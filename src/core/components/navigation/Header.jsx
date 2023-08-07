@@ -1,12 +1,12 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import LoginAction from '../login/LoginAction';
+import { CSSTransition } from 'react-transition-group';
 
 const Header = () => {
     const [username, setUsername] = useState('Mrunal');
     const [showLoginAction, setShowLoginAction] = useState(false);
     const [showProfileBtn, setShowProfileBtn] = useState(true);
-    const [usermail, setUsermail] = useState('');
 
     const noderef = useRef(null);
 
