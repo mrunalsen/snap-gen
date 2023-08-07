@@ -4,10 +4,10 @@ import Routing from './core/components/navigation/Routing';
 
 function App() {
   return (
-    <>
-      <Header />
+    <div className='flex flex-col h-full'>
+      {/* <Header /> */}
       <Routing />
-    </>
+    </div>
   );
 }
 
