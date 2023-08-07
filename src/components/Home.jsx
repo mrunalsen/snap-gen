@@ -1,10 +1,11 @@
 import React from 'react';
-import Header from '../core/components/navigation/Header';
 
 const Home = () => {
     return (
-        <div>
-            <Header />
+        <div className='bg-body h-full'>
+            <div className="container">
+
+            </div>
         </div>
     );
 };
