@@ -1,8 +1,11 @@
 import React from 'react';
+import Header from '../core/components/navigation/Header';
 
 const Home = () => {
     return (
-        <div>Home</div>
+        <div>
+            <Header />
+        </div>
     );
 };
 
