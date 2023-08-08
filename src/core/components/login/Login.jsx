@@ -14,7 +14,7 @@ function Login() {
         initialValues: initialvalue,
         // validationSchema: loginSchema,
         onSubmit: (value, action) => {
-            if (value.username === 'mrunal' && value.password === 'password') {
+            if (value.username === 'employee' && value.password === 'password') {
                 navigateTo('/home');
             } else if (value.username === 'admin' && value.password === 'password') {
                 navigateTo(`/admin`);

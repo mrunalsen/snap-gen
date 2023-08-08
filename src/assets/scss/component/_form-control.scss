@@ -2,4 +2,21 @@
     background-image: url(src/assets/images/headBg.png);
     background-size: cover;
     background-repeat: no-repeat;
+    background-position: center;
+}
+
+.group-radio {
+    .group-input {
+        display: none;
+
+        &:checked {
+            &+.group-label {
+                @apply bg-blue-500 text-white
+            }
+        }
+    }
+
+    .group-label {
+        @apply transition duration-300 px-6 py-3 border border-zinc-300 cursor-pointer hover:bg-blue-300 select-none
+    }
 }

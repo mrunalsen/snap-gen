@@ -22,7 +22,7 @@ const Header = () => {
                 </Link>
             </div>
             <div>
-                <h2 className='text-xl text-white'>Snapshot</h2>
+                <h2 className='text-xl text-white'>Form</h2>
             </div>
             <div className='text-white'>
 
