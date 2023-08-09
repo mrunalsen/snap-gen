@@ -2,7 +2,7 @@ import React from 'react';
 
 const Ratings = (props) => {
     const { values, input } = props;
-    let value = values.review;
+    const value = values.review;
     return (
         <div>
             {/* Start : Ratings */}
@@ -17,10 +17,11 @@ const Ratings = (props) => {
                         <div className="group-radio flex">
                             <input
                                 type="radio"
-                                name="leadership"
+                                name="review.leadership"
                                 className='group-input'
                                 id='leadRate1'
-                                value={1}
+                                value={value.leadership}
+                                onChange={() => { value.leadership = 1; }}
                                 disabled={input}
                             />
                             <label htmlFor="leadRate1" className='group-label'>1</label>
@@ -28,10 +29,11 @@ const Ratings = (props) => {
                         <div className="group-radio flex">
                             <input
                                 type="radio"
-                                name="leadership"
+                                name="review.leadership"
                                 className='group-input'
                                 id="leadRate2"
-                                value={2}
+                                value={value.leadership}
+                                onChange={() => { value.leadership = 2; }}
                                 disabled={input}
                             />
                             <label htmlFor="leadRate2" className='group-label'>2</label>
@@ -39,29 +41,32 @@ const Ratings = (props) => {
                         <div className="group-radio flex">
                             <input
                                 type="radio"
-                                name="leadership"
+                                name="review.leadership"
                                 className='group-input'
                                 id="leadRate3"
-                                value={3}
+                                value={value.leadership}
+                                onChange={() => { value.leadership = 3; }}
                                 disabled={input} />
                             <label htmlFor="leadRate3" className='group-label'>3</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="leadership"
+                                name="review.leadership"
                                 className='group-input'
                                 id="leadRate4"
-                                value={4}
+                                value={value.leadership}
+                                onChange={() => { value.leadership = 4; }}
                                 disabled={input}
                             />
                             <label htmlFor="leadRate4" className='group-label'>4</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="leadership"
+                                name="review.leadership"
                                 className='group-input'
                                 id="leadRate5"
-                                value={5}
+                                value={value.leadership}
+                                onChange={() => { value.leadership = 5; }}
                                 disabled={input}
                             />
                             <label htmlFor="leadRate5" className='group-label'>5</label>
@@ -75,50 +80,55 @@ const Ratings = (props) => {
                     <div className="flex">
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="business"
+                                name="review.business"
                                 className='group-input'
                                 id='business1'
-                                value={1}
+                                value={value.business}
+                                onChange={() => { value.business = 1; }}
                                 disabled={input}
                             />
                             <label htmlFor="business1" className='group-label'>1</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="business"
+                                name="review.business"
                                 className='group-input'
                                 id="business2"
-                                value={2}
+                                value={value.business}
+                                onChange={() => { value.business = 2; }}
                                 disabled={input}
                             />
                             <label htmlFor="business2" className='group-label'>2</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="business"
+                                name="review.business"
                                 className='group-input'
                                 id="business3"
-                                value={3}
+                                value={value.business}
+                                onChange={() => { value.business = 3; }}
                                 disabled={input}
                             />
                             <label htmlFor="business3" className='group-label'>3</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="business"
+                                name="review.business"
                                 className='group-input'
                                 id="business4"
-                                value={4}
+                                value={value.business}
+                                onChange={() => { value.business = 4; }}
                                 disabled={input}
                             />
                             <label htmlFor="business4" className='group-label'>4</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="business"
+                                name="review.business"
                                 className='group-input'
                                 id="business5"
-                                value={5}
+                                value={value.business}
+                                onChange={() => { value.business = 5; }}
                                 disabled={input}
                             />
                             <label htmlFor="business5" className='group-label'>5</label>
@@ -132,50 +142,55 @@ const Ratings = (props) => {
                     <div className="flex">
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="technology"
+                                name="review.technology"
                                 className='group-input'
                                 id='technology1'
-                                value={1}
+                                value={value.technology}
+                                onChange={() => { value.technology = 1; }}
                                 disabled={input}
                             />
                             <label htmlFor="technology1" className='group-label'>1</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="technology"
+                                name="review.technology"
                                 className='group-input'
                                 id="technology2"
-                                value={2}
+                                value={value.technology}
+                                onChange={() => { value.technology = 2; }}
                                 disabled={input}
                             />
                             <label htmlFor="technology2" className='group-label'>2</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="technology"
+                                name="review.technology"
                                 className='group-input'
                                 id="technology3"
-                                value={3}
+                                value={value.technology}
+                                onChange={() => { value.technology = 3; }}
                                 disabled={input}
                             />
                             <label htmlFor="technology3" className='group-label'>3</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="technology"
+                                name="review.technology"
                                 className='group-input'
                                 id="technology4"
-                                value={4}
+                                value={value.technology}
+                                onChange={() => { value.technology = 4; }}
                                 disabled={input}
                             />
                             <label htmlFor="technology4" className='group-label'>4</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="technology"
+                                name="review.technology"
                                 className='group-input'
                                 id="technology5"
-                                value={5}
+                                value={value.technology}
+                                onChange={() => { value.technology = 5; }}
                                 disabled={input}
                             />
                             <label htmlFor="technology5" className='group-label'>5</label>
@@ -189,50 +204,55 @@ const Ratings = (props) => {
                     <div className="flex">
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="inclusive"
+                                name="review.inclusive"
                                 className='group-input'
                                 id='inclusive1'
-                                value={1}
+                                value={value.inclusive}
+                                onChange={() => { value.inclusive = 1; }}
                                 disabled={input}
                             />
                             <label htmlFor="inclusive1" className='group-label'>1</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="inclusive"
+                                name="review.inclusive"
                                 className='group-input'
                                 id="inclusive2"
-                                value={2}
+                                value={value.inclusive}
+                                onChange={() => { value.inclusive = 2; }}
                                 disabled={input}
                             />
                             <label htmlFor="inclusive2" className='group-label'>2</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="inclusive"
+                                name="review.inclusive"
                                 className='group-input'
                                 id="inclusive3"
-                                value={3}
+                                value={value.inclusive}
+                                onChange={() => { value.inclusive = 3; }}
                                 disabled={input}
                             />
                             <label htmlFor="inclusive3" className='group-label'>3</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="inclusive"
+                                name="review.inclusive"
                                 className='group-input'
                                 id="inclusive4"
-                                value={4}
+                                value={value.inclusive}
+                                onChange={() => { value.inclusive = 4; }}
                                 disabled={input}
                             />
                             <label htmlFor="inclusive4" className='group-label'>4</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="inclusive"
+                                name="review.inclusive"
                                 className='group-input'
                                 id="inclusive5"
-                                value={5}
+                                value={value.inclusive}
+                                onChange={() => { value.inclusive = 5; }}
                                 disabled={input}
                             />
                             <label htmlFor="inclusive5" className='group-label'>5</label>
@@ -246,50 +266,55 @@ const Ratings = (props) => {
                     <div className="flex">
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="collaboration"
+                                name="review.collaboration"
                                 className='group-input'
                                 id='collaboration1'
-                                value={1}
+                                value={value.collaboration}
+                                onChange={() => { value.collaboration = 1; }}
                                 disabled={input}
                             />
                             <label htmlFor="collaboration1" className='group-label'>1</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="collaboration"
+                                name="review.collaboration"
                                 className='group-input'
                                 id="collaboration2"
-                                value={2}
+                                value={value.collaboration}
+                                onChange={() => { value.collaboration = 2; }}
                                 disabled={input}
                             />
                             <label htmlFor="collaboration2" className='group-label'>2</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="collaboration"
+                                name="review.collaboration"
                                 className='group-input'
                                 id="collaboration3"
-                                value={3}
+                                value={value.collaboration}
+                                onChange={() => { value.collaboration = 3; }}
                                 disabled={input}
                             />
                             <label htmlFor="collaboration3" className='group-label'>3</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="collaboration"
+                                name="review.collaboration"
                                 className='group-input'
                                 id="collaboration4"
-                                value={4}
+                                value={value.collaboration}
+                                onChange={() => { value.collaboration = 4; }}
                                 disabled={input}
                             />
                             <label htmlFor="collaboration4" className='group-label'>4</label>
                         </div>
                         <div className="group-radio flex">
                             <input type="radio"
-                                name="collaboration"
+                                name="review.collaboration"
                                 className='group-input'
                                 id="collaboration5"
-                                value={5}
+                                value={value.collaboration}
+                                onChange={() => { value.collaboration = 5; }}
                                 disabled={input}
                             />
                             <label htmlFor="collaboration5" className='group-label'>5</label>

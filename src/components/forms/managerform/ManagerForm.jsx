@@ -1,8 +1,8 @@
+import { useFormik } from 'formik';
 import React from 'react';
 import Ratings from '../common/Ratings';
-import ManagerInput from './ManagerInput';
 import EmployeeInput from '../employeeform/EmployeeInput';
-import { FormikProvider, useFormik } from 'formik';
+import ManagerInput from './ManagerInput';
 
 const ManagerForm = () => {
 
@@ -27,15 +27,15 @@ const ManagerForm = () => {
             mq1: '',
             mq2: '',
             mq3: '',
-            leadership: '',
-            business: '',
-            technology: '',
-            inclusive: '',
-            collaboration: '',
+            leadership: undefined,
+            business: undefined,
+            technology: undefined,
+            inclusive: undefined,
+            collaboration: undefined,
         }
     };
 
-    const { handleSubmit, handleChange, values } = useFormik({
+    const { handleSubmit, handleChange, handleReset, values } = useFormik({
         initialValues: initialvalue,
         // validationSchema: signupSchema,
         // validateOnChange: false,
@@ -47,30 +47,26 @@ const ManagerForm = () => {
     }
     );
     return (
-        <>
-            <form onSubmit={handleSubmit}>
-                <EmployeeInput
-                    values={values}
-                    handleChange={handleChange}
-                    input={'disabled'}
-                />
-                <ManagerInput
-                    values={values}
-                    handleChange={handleChange}
-                    input={null}
-                />
-                <FormikProvider value={initialvalue}>
-                    <Ratings
-                        values={values}
-                        handleChange={handleChange}
-                        input={null}
-                    />
-                </FormikProvider>
-                <div className="text-end">
-                    <button className="btn-primary w-auto" type='submit'>submit</button>
-                </div>
-            </form>
-        </>
+        <form onSubmit={handleSubmit}>
+            <EmployeeInput
+                values={values}
+                handleChange={handleChange}
+                input={'disabled'}
+            />
+            <ManagerInput
+                values={values}
+                handleChange={handleChange}
+                input={null}
+            />
+            <Ratings
+                values={values}
+                handleChange={handleChange}
+                input={null}
+            />
+            <div className="text-end">
+                <button className="btn-primary w-auto" type='submit'>submit</button>
+            </div>
+        </form>
     );
 };
 
