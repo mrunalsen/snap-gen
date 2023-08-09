@@ -14,6 +14,12 @@
                 @apply bg-blue-500 text-white
             }
         }
+
+        &:disabled {
+            &+.group-label {
+                @apply cursor-not-allowed
+            }
+        }
     }
 
     .group-label {

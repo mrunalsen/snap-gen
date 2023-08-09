@@ -1,8 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import LoginAction from '../login/LoginAction';
 import { CSSTransition } from 'react-transition-group';
-import logo from '../../../assets/images/1rlogo.png';
+import LoginAction from '../login/LoginAction';
 
 const Header = () => {
     const [username, setUsername] = useState('Profile');
@@ -16,11 +15,7 @@ const Header = () => {
     };
     return (
         <div className='relative flex justify-between items-center bg-blue-500'>
-            <div className='flex items-center'>
-                <Link to={'/'}>
-                    <img src={logo} alt="logo" className='w-10 m-2' />
-                </Link>
-            </div>
+            <p className='text-white text-3xl font-bold p-1 ms-1 select-none'><span className='text-rose-500'>1</span>R</p>
             <div>
                 <h2 className='text-xl text-white'>Form</h2>
             </div>
