@@ -5,9 +5,9 @@ import {
 } from "react-router-dom";
 import Home from '../../../components/Home';
 import Admin from '../../../components/Admin';
+import FormContainer from '../../../components/forms/createForm/FormContainer';
 import Login from '../login/Login';
 import Signup from '../login/Signup';
-// import Employee from '../../../components/Employee';
 const Routing = () => {
     return (
         <>
@@ -16,7 +16,7 @@ const Routing = () => {
                 <Route path='/home' element={<Home />} />
                 <Route path='/admin' element={<Admin />} />
                 <Route path='/signup' element={<Signup />} />
-                {/* <Route path='/employee' element={<Employee />} /> */}
+                <Route path='/create' element={<FormContainer />} />
             </Routes>
         </>
     );
