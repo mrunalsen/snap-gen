@@ -1,5 +1,4 @@
 import React, { useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import { CSSTransition } from 'react-transition-group';
 import LoginAction from '../login/LoginAction';
 
@@ -17,7 +16,7 @@ const Header = () => {
         <div className='relative flex justify-between items-center bg-blue-500'>
             <p className='text-white text-3xl font-bold p-1 ms-1 select-none'><span className='text-rose-500'>1</span>R</p>
             <div>
-                <h2 className='text-xl text-white'>Form</h2>
+                <h2 className='text-xl text-white'>SnapGen</h2>
             </div>
             <div className='text-white'>
 

@@ -1,10 +1,8 @@
-import { Field, FieldArray, Form, Formik, useFormik } from 'formik';
+import { Field, FieldArray, Formik } from 'formik';
 import React from 'react';
 
 const NewForm = () => {
-    const initialValues = {
-        form: []
-    };
+    const initialValues = { form: [] };
 
     return (
         <Formik
@@ -22,7 +20,7 @@ const NewForm = () => {
                                     <div key={index}>
                                         <label htmlFor={`form[${index}].question`}>Question {index + 1}</label>
                                         <Field
-                                            as='textarea'
+                                            type='text'
                                             name={`form[${index}].question`}
                                             id={`form[${index}].question`}
                                         />

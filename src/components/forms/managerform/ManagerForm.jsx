@@ -37,9 +37,7 @@ const ManagerForm = () => {
 
     const { handleSubmit, handleChange, handleReset, values } = useFormik({
         initialValues: initialvalue,
-        // validationSchema: signupSchema,
-        // validateOnChange: false,
-        // validateOnBlur: false,
+
         onSubmit: (value, action) => {
             console.log('values:', value);
             action.resetForm();
