@@ -50,7 +50,7 @@ const Signup = () => {
                     </p>
                     <p className="flex flex-col items-center justify-center mt-10 text-center">
                         <span>Already have an account?</span>
-                        <Link to={`/login`}>Log in</Link>
+                        <Link to={`/`}>Log in</Link>
                     </p>
                     <p className="mt-6 text-sm text-center text-gray-300">
                         Read our <a href="" className="underline">terms</a> and <a href="" className="underline">conditions</a>

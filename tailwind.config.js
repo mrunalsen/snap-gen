@@ -7,7 +7,33 @@ export default {
   ],
   theme: {
     extend: {},
+    container: {
+      center: true,
+    },
   },
-  plugins: [],
+  corePlugins: {
+    container: false
+  },
+  plugins: [
+    function ({ addComponents }) {
+      addComponents({
+        '.container': {
+          maxWidth: '100%',
+          '@screen sm': {
+            maxWidth: '640px',
+          },
+          '@screen md': {
+            maxWidth: '768px',
+          },
+          '@screen lg': {
+            maxWidth: '868px',
+          },
+          '@screen xl': {
+            maxWidth: '868px',
+          },
+        }
+      });
+    }
+  ],
 }
 

@@ -1,10 +1,10 @@
 import React, { useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
-import LoginAction from '../login/LoginAction';
 import { CSSTransition } from 'react-transition-group';
+import LoginAction from '../login/LoginAction';
 
 const Header = () => {
-    const [username, setUsername] = useState('Mrunal');
+    const [username, setUsername] = useState('Profile');
     const [showLoginAction, setShowLoginAction] = useState(false);
     const [showProfileBtn, setShowProfileBtn] = useState(true);
 
@@ -15,12 +15,9 @@ const Header = () => {
     };
     return (
         <div className='relative flex justify-between items-center bg-blue-500'>
-            <div className='flex items-center'>
-                <Link to={'/'}><i className="bi bi-amd text-white py-2 px-4"></i></Link>
-                <h2 className='text-3xl text-white'>Forms</h2>
-            </div>
+            <p className='text-white text-3xl font-bold p-1 ms-1 select-none'><span className='text-rose-500'>1</span>R</p>
             <div>
-                <h2 className='text-xl text-white'>Snapshot Review</h2>
+                <h2 className='text-xl text-white'>Form</h2>
             </div>
             <div className='text-white'>
 
@@ -36,7 +33,7 @@ const Header = () => {
                     <LoginAction />
                 </CSSTransition>
 
-                <button className="btn-primary focus:ring-0" onClick={handleClick}>
+                <button className="btn-primary shadow-none focus:ring-0" onClick={handleClick}>
                     <i className="bi bi-caret-down-fill me-2"></i>
                     {username}
                 </button>

@@ -1,10 +1,10 @@
 import React from 'react';
 import Header from '../core/components/navigation/Header';
+import ManagerForm from './forms/managerform/ManagerForm';
 import brand from '../assets/images/fulllogo.png';
-import EmployeeForm from './forms/employeeform/EmployeeForm';
 import { formatDate, getDate } from '../shared/getDate';
 
-const Home = () => {
+const Admin = () => {
     return (
         <>
             <Header />
@@ -23,11 +23,11 @@ const Home = () => {
                             <p>Hi! Would you mind taking few minutes to complete this form? It would be great if you can submit your response by Aug 9, 2023. Thank you!</p>
                         </div>
                     </div>
-                    <EmployeeForm />
+                    <ManagerForm />
                 </div>
             </div>
         </>
     );
 };
 
-export default Home;
+export default Admin;

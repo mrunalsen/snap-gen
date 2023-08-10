@@ -1,20 +1,26 @@
 import { useFormik } from 'formik';
-import React from 'react';
+// import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 const initialvalue = {
-    email: '',
+    username: '',
     password: '',
 };
 
 function Login() {
     const navigateTo = useNavigate();
 
-    const { handleBlur, handleChange, handleSubmit, values, errors, touched } = useFormik({
+    const { handleSubmit, values, handleChange } = useFormik({
         initialValues: initialvalue,
         // validationSchema: loginSchema,
         onSubmit: (value, action) => {
-            navigateTo(`/`);
+            if (value.username === 'employee' && value.password === 'password') {
+                navigateTo('/home');
+            } else if (value.username === 'admin' && value.password === 'password') {
+                navigateTo(`/admin`);
+            } else {
+                alert('invalid credentials');
+            }
             action.resetForm();
         }
     });
@@ -45,11 +51,13 @@ function Login() {
                     <h3 className="my-4 text-2xl font-semibold text-gray-700">Account Login</h3>
                     <form className="flex flex-col space-y-5" onSubmit={handleSubmit}>
                         <div className="flex flex-col space-y-1">
-                            <label htmlFor="email" className="text-sm font-semibold text-gray-500">Email address</label>
+                            <label htmlFor="username" className="text-sm font-semibold text-gray-500">Username</label>
                             <input
-                                name='email'
-                                type="email"
-                                id="email"
+                                name='username'
+                                type="text"
+                                id="username"
+                                value={values.username}
+                                onChange={handleChange}
                                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                             />
                         </div>
@@ -61,7 +69,8 @@ function Login() {
                                 name='password'
                                 type="password"
                                 id="password"
-
+                                value={values.password}
+                                onChange={handleChange}
                                 className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
                             />
                         </div>
