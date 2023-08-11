@@ -3,6 +3,7 @@ import Ratings from '../common/Ratings';
 import ManagerInput from '../managerform/ManagerInput';
 import EmployeeInput from './EmployeeInput';
 import { useFormik } from 'formik';
+import questions from '../common/Questions';
 
 const EmployeeForm = () => {
     const initialvalue = {
@@ -51,6 +52,7 @@ const EmployeeForm = () => {
                 values={values}
                 handleChange={handleChange}
                 input={null}
+                questions={questions}
             />
             {/* End : Employee details */}
             {/* Start : Manager Review */}

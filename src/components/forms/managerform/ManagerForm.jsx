@@ -3,6 +3,7 @@ import React from 'react';
 import Ratings from '../common/Ratings';
 import EmployeeInput from '../employeeform/EmployeeInput';
 import ManagerInput from './ManagerInput';
+import questions from '../common/Questions';
 
 const ManagerForm = () => {
 
@@ -50,6 +51,7 @@ const ManagerForm = () => {
                 values={values}
                 handleChange={handleChange}
                 input={'disabled'}
+                questions={questions}
             />
             <ManagerInput
                 values={values}
