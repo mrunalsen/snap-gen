@@ -1,17 +1,18 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import Header from '../../../core/components/navigation/Header';
 import brand from '../../../assets/images/fulllogo.png';
 import { formatDate, getDate } from '../../../shared/getDate';
 import NewForm from './formcomponents/NewForm';
 
 const FormContainer = () => {
+    const containerRef = useRef();
     return (
         <>
             {/* Start : Header */}
             <Header />
             {/* End : Header */}
             {/* Start : Form Header */}
-            <div className='bg-body overflow-auto h-full'>
+            <div className='bg-body overflow-auto h-full' ref={containerRef}>
                 <div className="container overflow-hidden my-5 mx-auto">
                     <div className='bg-head flex justify-end rounded-md my-4'>
                         <div className='bg-white max-w-[300px] rounded-md px-6 py-10 m-10'>
@@ -30,7 +31,7 @@ const FormContainer = () => {
                 {/* End : Form Header */}
                 {/* Start : Create New Form */}
                 <div className="container overflow-hidden mb-4 mx-auto">
-                    <NewForm />
+                    <NewForm containerRef={containerRef} />
                 </div>
                 {/* End : Create New Form */}
             </div>

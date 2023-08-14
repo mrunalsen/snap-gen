@@ -1,7 +1,7 @@
 import { Field, FieldArray, Formik } from 'formik';
 import React, { useRef } from 'react';
 
-const NewForm = () => {
+const NewForm = ({ containerRef }) => {
     // constant for form FieldArray input
     const initialValues = { form: [] };
 
@@ -66,7 +66,11 @@ const NewForm = () => {
                                     <button
                                         type="button"
                                         className='btn-primary'
-                                        onClick={() => { push({ question: '', required: false }); }}>
+                                        onClick={() => {
+                                            push({ question: '', required: false });
+                                            containerRef.current.scrollTop = containerRef.current.scrollHeight + 3000;
+                                            console.log(containerRef.current.scrollTop);
+                                        }}>
                                         Add Question
                                     </button>
                                 </div>
