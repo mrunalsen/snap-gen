@@ -1,9 +1,10 @@
 import { useContext } from "react";
 
-const FormContext = useContext()
+const FormContext = useContext();
 
 export function useFormContext() {
-    return useContext(FormContext);
-  }
-  
-  export default FormContext;
+  // Returns form context for Create form (NewForm.jsx) component
+  return useContext(FormContext);
+}
+
+export default FormContext;

@@ -7,9 +7,12 @@ import { formatDate, getDate } from '../shared/getDate';
 const Admin = () => {
     return (
         <>
+            {/* Start : Header */}
             <Header />
+            {/* End : Header */}
             <div className='bg-body overflow-auto h-full'>
                 <div className="container overflow-hidden my-5 mx-auto">
+                    {/* Start : Form Header */}
                     <div className='bg-head flex justify-end rounded-md my-4'>
                         <div className='bg-white max-w-[300px] rounded-md px-6 py-10 m-10'>
                             <figure className='mb-4'>
@@ -23,7 +26,10 @@ const Admin = () => {
                             <p>Hi! Would you mind taking few minutes to complete this form? It would be great if you can submit your response by Aug 9, 2023. Thank you!</p>
                         </div>
                     </div>
+                    {/* End : Form Header */}
+                    {/* Start : Manager Form */}
                     <ManagerForm />
+                    {/* End : Manager Form */}
                 </div>
             </div>
         </>

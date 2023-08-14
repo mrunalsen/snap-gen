@@ -7,7 +7,10 @@ import NewForm from './formcomponents/NewForm';
 const FormContainer = () => {
     return (
         <>
+            {/* Start : Header */}
             <Header />
+            {/* End : Header */}
+            {/* Start : Form Header */}
             <div className='bg-body overflow-auto h-full'>
                 <div className="container overflow-hidden my-5 mx-auto">
                     <div className='bg-head flex justify-end rounded-md my-4'>
@@ -24,9 +27,12 @@ const FormContainer = () => {
                         </div>
                     </div>
                 </div>
-                <div className="container bg-white overflow-hidden rounded-md mb-4 mx-auto">
+                {/* End : Form Header */}
+                {/* Start : Create New Form */}
+                <div className="container overflow-hidden mb-4 mx-auto">
                     <NewForm />
                 </div>
+                {/* End : Create New Form */}
             </div>
         </>
     );

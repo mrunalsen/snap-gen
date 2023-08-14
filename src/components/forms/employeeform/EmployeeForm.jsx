@@ -6,6 +6,7 @@ import { useFormik } from 'formik';
 import questions from '../common/Questions';
 
 const EmployeeForm = () => {
+    // Constant for Initial Values for form field values
     const initialvalue = {
         id: '',
         name: '',
@@ -34,7 +35,7 @@ const EmployeeForm = () => {
             collaboration: undefined,
         }
     };
-
+    // Constant extracted from Formik Form Library
     const { handleSubmit, handleChange, values } = useFormik({
         initialValues: initialvalue,
 

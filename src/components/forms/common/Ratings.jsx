@@ -1,8 +1,9 @@
 import React from 'react';
 
 const Ratings = (props) => {
+    // input  and value props from ManagerForm and EmployeeForm components
     const { values, input } = props;
-
+    // constant for categories Rating input labels
     const categories = [
         { key: 'leadership', label: 'Leadership' },
         { key: 'business', label: 'Business Acumen' },
@@ -10,6 +11,7 @@ const Ratings = (props) => {
         { key: 'inclusive', label: 'Global & Inclusive' },
         { key: 'collaboration', label: 'Collaboration' }
     ];
+    // constant for Rating's guide
     const ratingGuideData = [
         {
             title: '1 = Not at level :',
@@ -33,6 +35,10 @@ const Ratings = (props) => {
         },
     ];
 
+    /**
+    * @name renderRadioButtons
+    * @description returns radio buttons for ratings input which have ratings from (1-5)
+    */
     const renderRadioButtons = (categoryKey) => {
         const value = values.review[categoryKey];
         const radioButtons = [];

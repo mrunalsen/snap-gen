@@ -2,9 +2,9 @@ import { Field, FieldArray, Formik } from 'formik';
 import React, { useRef } from 'react';
 
 const NewForm = () => {
+    // constant for form FieldArray input
     const initialValues = { form: [] };
-    const formRef = useRef(null);
-    
+
     return (
         <Formik
             initialValues={initialValues}
@@ -14,9 +14,10 @@ const NewForm = () => {
         >
             {({ values, handleSubmit }) => (
                 <form onSubmit={handleSubmit}>
+                    {/* Start : Field Array */}
                     <FieldArray name="form">
                         {({ push, remove }) => (
-                            <>
+                            <div className='bg-white rounded-md'>
                                 {values.form.map((question, index) => (
                                     <div key={index} className='flex flex-col border hover:bg-gray-100 p-4'>
                                         {/* <label
@@ -25,15 +26,19 @@ const NewForm = () => {
                                         >
                                             {`${index + 1}) Question`}
                                         </label> */}
+                                        {/* Start : Question input Field */}
                                         <Field
                                             type='text'
                                             name={`form[${index}].question`}
                                             id={`form[${index}].question`}
                                             className={`input-primary`}
-                                            placeholder= {`${index + 1}) Question`}
+                                            placeholder={`${index + 1}) Question`}
                                             autoComplete="off"
                                         />
+                                        {/* End : Question input Field */}
+                                        {/* Start : Action Fields */}
                                         <div className="flex justify-between mt-2">
+                                            {/* Start : Required Action */}
                                             <div className="flex items-center">
                                                 <Field
                                                     type="checkbox"
@@ -46,35 +51,35 @@ const NewForm = () => {
                                                 </label>
                                                 <p className='m-0'>Required</p>
                                             </div>
+                                            {/* End : Required Action */}
+                                            {/* Start : Remove Field Action */}
                                             <button type="button" onClick={() => remove(index)}>
                                                 <i className="bi bi-trash-fill text-zinc-600 hover:text-rose-500 text-lg"></i>
                                             </button>
+                                            {/* End : Remove Field Action */}
                                         </div>
+                                        {/* End : Action Fields */}
                                     </div>
                                 ))}
-                           <div className='text-center my-6'>
-                           <button
-                                    type="button"
-                                    className='btn-primary'
-                                    onClick={() => {
-                                        push({ question: '', required: false });
-                                  formRef.current.scrollTo({
-                                    top: formRef.current.scrollHeight,
-                                    behaviour: 'smooth'
-                                  })
-                                    }}
-                                >
-                                    Add Question
-                                </button>
-                           </div>
-                            </>
+                                {/* Start : Add Question Action */}
+                                <div className='text-center py-6'>
+                                    <button
+                                        type="button"
+                                        className='btn-primary'
+                                        onClick={() => { push({ question: '', required: false }); }}>
+                                        Add Question
+                                    </button>
+                                </div>
+                                {/* End : Add Question Action */}
+                            </div>
                         )}
                     </FieldArray>
-                  <div>
-                  <button type="submit" className='btn-outline-primary group'>
-                        <span className="text-outline-primary">Submit</span>
-                    </button>
-                  </div>
+                    {/* End : Field Array */}
+                    {/* Start : Submit Action */}
+                    <div className='text-end mt-4'>
+                        <button type="submit" className='btn-primary'>Submit</button>
+                    </div>
+                    {/* End : Submit Action */}
                 </form>
             )}
         </Formik>

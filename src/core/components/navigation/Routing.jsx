@@ -11,6 +11,7 @@ import Signup from '../login/Signup';
 const Routing = () => {
     return (
         <>
+            {/* Start : Routing paths */}
             <Routes>
                 <Route path='/' element={<Login />} />
                 <Route path='/home' element={<Home />} />
@@ -18,6 +19,7 @@ const Routing = () => {
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/create' element={<FormContainer />} />
             </Routes>
+            {/* End : Routing paths */}
         </>
     );
 };
