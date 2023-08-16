@@ -2,8 +2,21 @@ import { Field, FieldArray, Formik } from 'formik';
 import React, { useRef } from 'react';
 
 const NewForm = ({ containerRef }) => {
-    // constant for form FieldArray input
+    /* Constant for form FieldArray input */
     const initialValues = { form: [] };
+    /* Constant for Submit button reference */
+    const submitButtonRef = useRef();
+
+    /**
+     * @description this function brings Submit button into view on add question button click
+     */
+    const scrollToSubmitButton = () => {
+        setTimeout(() => {
+            if (submitButtonRef.current) {
+                submitButtonRef.current.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    };
 
     return (
         <Formik
@@ -68,8 +81,7 @@ const NewForm = ({ containerRef }) => {
                                         className='btn-primary'
                                         onClick={() => {
                                             push({ question: '', required: false });
-                                            containerRef.current.scrollTop = containerRef.current.scrollHeight + 3000;
-                                            console.log(containerRef.current.scrollTop);
+                                            scrollToSubmitButton();
                                         }}>
                                         Add Question
                                     </button>
@@ -80,7 +92,7 @@ const NewForm = ({ containerRef }) => {
                     </FieldArray>
                     {/* End : Field Array */}
                     {/* Start : Submit Action */}
-                    <div className='text-end mt-4'>
+                    <div className='text-end mt-4' ref={submitButtonRef}>
                         <button type="submit" className='btn-primary'>Submit</button>
                     </div>
                     {/* End : Submit Action */}

@@ -1,15 +1,18 @@
 import { useFormik } from 'formik';
-// import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+/* Initial Values for Login */
 const initialvalue = {
     username: '',
     password: '',
 };
 
-function Login() {
+const Login = () => {
+    /* Navigation method for changing the location in the app */
     const navigateTo = useNavigate();
-
+    /**
+     * @description method used for submitting form values with Formik and Yup libraries
+     */
     const { handleSubmit, values, handleChange } = useFormik({
         initialValues: initialvalue,
         // validationSchema: loginSchema,
@@ -109,6 +112,6 @@ function Login() {
             </div>
         </div>
     );
-}
+};
 
 export default Login;

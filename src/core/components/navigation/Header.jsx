@@ -3,20 +3,19 @@ import { CSSTransition } from 'react-transition-group';
 import LoginAction from '../login/LoginAction';
 
 const Header = () => {
-    // State for setting User name in the profile menu
+    /* State for setting User name in the profile menu */
     const [username, setUsername] = useState('Profile');
-    // State of toggling logging profile action buttons
+    /* State of toggling logging profile action buttons */
     const [showLoginAction, setShowLoginAction] = useState(false);
-    // State for showing button for profile dropdown
+    /* State for showing button for profile dropdown */
     const [showProfileBtn, setShowProfileBtn] = useState(true);
+
     /**
-    * @name useRef
     * @description here the noderef is optional yet is provided so the CSSTransition group doesn't get confused in rendering between similar DOM elements 
     */
     const noderef = useRef(null);
 
     /**
-    * @name handleClick
     * @description the function toggles the state of profile dropdown which consists of logout action
     */
     const handleClick = () => {

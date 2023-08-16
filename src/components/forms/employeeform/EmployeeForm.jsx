@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import questions from '../common/Questions';
 
 const EmployeeForm = () => {
-    // Constant for Initial Values for form field values
+    /* Constant for Initial Values for form field values */
     const initialvalue = {
         id: '',
         name: '',
@@ -35,7 +35,9 @@ const EmployeeForm = () => {
             collaboration: undefined,
         }
     };
-    // Constant extracted from Formik Form Library
+    /**
+     * @description method used for submitting form values with Formik and Yup libraries
+     */
     const { handleSubmit, handleChange, values } = useFormik({
         initialValues: initialvalue,
 

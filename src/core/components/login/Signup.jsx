@@ -1,12 +1,9 @@
 import { useFormik } from 'formik';
 import React from 'react';
 // import { signupSchema } from '../../../schemas';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-/**
- * @name initialValue
- * @description initial values of signup form
- */
+/* Initial values of signup form */
 const initialvalue = {
     name: '',
     email: '',
@@ -18,13 +15,6 @@ const initialvalue = {
  */
 const Signup = () => {
     /**
-     * @name navigateTo
-     * @description constant of useNavigate, an imperative method for changing the location in the app
-     */
-    const navigateTo = useNavigate();
-
-    /**
-     * @name useFormik
      * @description method used for submitting form values with Formik and Yup libraries
      */
     const { handleBlur, handleChange, handleSubmit, values, errors, touched, isValid } = useFormik({

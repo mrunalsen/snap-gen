@@ -1,7 +1,7 @@
 import React from 'react';
 
 const EmployeeInput = (props) => {
-    // values extracted from props passed on from Employee Manager form
+    /* Constants extracted from props passed on from Employee Manager form */
     const { handleChange, values, input, questions } = props;
 
     return (
@@ -105,8 +105,7 @@ const EmployeeInput = (props) => {
                             </label>
                             {/* End : label */}
                             {/* Start : Form Input */}
-                            <input
-                                type="text"
+                            <textarea
                                 value={values.data[`q${index + 1}`]}
                                 onChange={handleChange}
                                 id={`q${index + 1}`}

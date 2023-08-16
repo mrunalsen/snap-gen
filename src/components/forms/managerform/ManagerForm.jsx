@@ -6,7 +6,7 @@ import ManagerInput from './ManagerInput';
 import questions from '../common/Questions';
 
 const ManagerForm = () => {
-    // Constant for initial values for form input values
+    /* Constant for initial values for form input values */
     const initialvalue = {
         id: 'xyzzyx',
         name: 'Mrunal',
@@ -35,7 +35,9 @@ const ManagerForm = () => {
             collaboration: undefined,
         }
     };
-    // Constant extracted from Formik Form Library
+    /**
+     * @description method used for submitting form values with Formik and Yup libraries
+     */
     const { handleSubmit, handleChange, handleReset, values } = useFormik({
         initialValues: initialvalue,
 

@@ -18,7 +18,7 @@ const ManagerInput = (props) => {
                         <label htmlFor='mq1'>PERFORMANCE DIFFERENTIATORS</label>
                         {/* End : Label */}
                         {/* Start : Input */}
-                        <input
+                        <textarea
                             value={values.review.mq1}
                             onChange={handleChange}
                             type="text"
@@ -35,7 +35,7 @@ const ManagerInput = (props) => {
                         <label htmlFor='mq2'>DEVELOPMENT ACTIONS</label>
                         {/* End : Label */}
                         {/* Start : Input */}
-                        <input
+                        <textarea
                             value={values.review.mq2}
                             onChange={handleChange}
                             type="text"
@@ -52,7 +52,7 @@ const ManagerInput = (props) => {
                         <label htmlFor='mq2'>FUTURE FOCUS AREAS</label>
                         {/* End : Label */}
                         {/* Start : Inout */}
-                        <input
+                        <textarea
                             value={values.review.mq3}
                             onChange={handleChange}
                             type="text"

@@ -1,4 +1,4 @@
-// Static questions constant for form's question labels 
+/* Static questions constant for form's question labels  */
 const questions = [
     { label: 'WHAT WERE YOUR PRIMARY OBJECTIVES IN YOUR ROLE AND TO WHAT EXTENT DO YOU FEEL YOU ACHIEVED THEM?' },
     { label: 'WHAT ARE THREE THINGS THAT YOU DID WELL WITHIN THE LAST YEAR? WHY DO YOU BELIEVE YOU WERE SUCCESSFUL?' },
