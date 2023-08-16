@@ -1,15 +1,18 @@
 import { useFormik } from 'formik';
-// import React from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
+/* Initial Values for Login */
 const initialvalue = {
     username: '',
     password: '',
 };
 
-function Login() {
+const Login = () => {
+    /* Navigation method for changing the location in the app */
     const navigateTo = useNavigate();
-
+    /**
+     * @description method used for submitting form values with Formik and Yup libraries
+     */
     const { handleSubmit, values, handleChange } = useFormik({
         initialValues: initialvalue,
         // validationSchema: loginSchema,
@@ -58,7 +61,7 @@ function Login() {
                                 id="username"
                                 value={values.username}
                                 onChange={handleChange}
-                                className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+                                className="input-primary"
                             />
                         </div>
                         <div className="flex flex-col space-y-1">
@@ -71,7 +74,7 @@ function Login() {
                                 id="password"
                                 value={values.password}
                                 onChange={handleChange}
-                                className="px-4 py-2 transition duration-300 border border-gray-300 rounded focus:border-transparent focus:outline-none focus:ring-4 focus:ring-blue-200"
+                                className="input-primary"
                             />
                         </div>
                         <div className="flex items-center justify-between">
@@ -86,7 +89,7 @@ function Login() {
                             <a href="" className="text-sm text-blue-600 hover:underline focus:text-blue-800">Forgot Password?</a>
                         </div>
                         <div>
-                            <button type="submit" className="btn-primary">Log in</button>
+                            <button type="submit" className="btn-primary w-full">Log in</button>
                         </div>
                         <div className="flex flex-col space-y-5">
                             <span className="flex items-center justify-center space-x-2">
@@ -97,10 +100,10 @@ function Login() {
                             <div className="flex flex-col space-y-4">
                                 <a
                                     href=""
-                                    className="flex items-center justify-center px-4 py-2 space-x-2 transition-colors duration-300 border border-blue-500 rounded-md group hover:bg-blue-500 focus:outline-none"
+                                    className="btn-outline-primary group"
                                 >
-                                    <i className="bi bi-microsoft group-hover:text-white text-blue-500"></i>
-                                    <span className="text-sm font-medium text-blue-500 group-hover:text-white">Microsoft</span>
+                                    <i className="bi bi-microsoft text-outline-primary text-sm font-medium"></i>
+                                    <span className="text-outline-primary text-sm font-medium">Microsoft</span>
                                 </a>
                             </div>
                         </div>
@@ -109,6 +112,6 @@ function Login() {
             </div>
         </div>
     );
-}
+};
 
 export default Login;

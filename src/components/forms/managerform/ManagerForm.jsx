@@ -3,9 +3,10 @@ import React from 'react';
 import Ratings from '../common/Ratings';
 import EmployeeInput from '../employeeform/EmployeeInput';
 import ManagerInput from './ManagerInput';
+import questions from '../common/Questions';
 
 const ManagerForm = () => {
-
+    /* Constant for initial values for form input values */
     const initialvalue = {
         id: 'xyzzyx',
         name: 'Mrunal',
@@ -34,39 +35,53 @@ const ManagerForm = () => {
             collaboration: undefined,
         }
     };
-
+    /**
+     * @description method used for submitting form values with Formik and Yup libraries
+     */
     const { handleSubmit, handleChange, handleReset, values } = useFormik({
         initialValues: initialvalue,
-        // validationSchema: signupSchema,
-        // validateOnChange: false,
-        // validateOnBlur: false,
+
         onSubmit: (value, action) => {
             console.log('values:', value);
             action.resetForm();
         }
     }
     );
+
     return (
-        <form onSubmit={handleSubmit}>
-            <EmployeeInput
-                values={values}
-                handleChange={handleChange}
-                input={'disabled'}
-            />
-            <ManagerInput
-                values={values}
-                handleChange={handleChange}
-                input={null}
-            />
-            <Ratings
-                values={values}
-                handleChange={handleChange}
-                input={null}
-            />
-            <div className="text-end">
-                <button className="btn-primary w-auto" type='submit'>submit</button>
-            </div>
-        </form>
+        <>
+            {/* Start : Manager Form */}
+            <form onSubmit={handleSubmit}>
+                {/* Start : Employee Input */}
+                <EmployeeInput
+                    values={values}
+                    handleChange={handleChange}
+                    input={'disabled'}
+                    questions={questions}
+                />
+                {/* End : Employee Input */}
+                {/* Start : Manager Input */}
+                <ManagerInput
+                    values={values}
+                    handleChange={handleChange}
+                    input={null}
+                />
+                {/* End : Manager Input */}
+                {/* Start : Tarings Input */}
+                <Ratings
+                    values={values}
+                    handleChange={handleChange}
+                    input={null}
+                />
+                {/* End : Tarings Input */}
+                {/* Start : Submit Action */}
+                <div className="text-end">
+                    <button className="btn-primary w-auto" type='submit'>submit</button>
+                </div>
+                {/* End : Submit Action */}
+            </form>
+            {/* End : Manager Form */}
+        </>
     );
 };
 
