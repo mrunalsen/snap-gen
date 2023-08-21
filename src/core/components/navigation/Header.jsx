@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { createRef, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import LoginAction from '../login/LoginAction';
 
@@ -46,7 +46,7 @@ const Header = () => {
                     onExited={() => { setShowProfileBtn(true); }}
                     ref={noderef}
                 >
-                    <LoginAction />
+                    <LoginAction ref={noderef} />
                 </CSSTransition>
                 {/* End : Profile actions */}
             </div>

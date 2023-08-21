@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { Field, FieldArray, Formik } from 'formik';
 import React, { useRef } from 'react';
 
@@ -21,8 +22,15 @@ const NewForm = ({ containerRef }) => {
     return (
         <Formik
             initialValues={initialValues}
-            onSubmit={(values) => {
-                console.log(values);
+            onSubmit={async (values) => {
+                try {
+                    const response = await axios.post('http://localhost:3000/form',
+                        { questions: values.form }
+                    );
+                    console.log('response', response.data);
+                } catch (err) {
+                    console.error('Error', err);
+                }
             }}
         >
             {({ values, handleSubmit }) => (
