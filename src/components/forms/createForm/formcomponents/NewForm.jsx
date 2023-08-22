@@ -38,15 +38,9 @@ const NewForm = ({ containerRef }) => {
                     {/* Start : Field Array */}
                     <FieldArray name="form">
                         {({ push, remove }) => (
-                            <div className='bg-white rounded-md'>
+                            <div className='bg-white overflow-hidden rounded-md'>
                                 {values.form.map((question, index) => (
                                     <div key={index} className='flex flex-col border hover:bg-gray-100 p-4'>
-                                        {/* <label
-                                            htmlFor={`form[${index}].question`}
-                                            className='mb-2'
-                                        >
-                                            {`${index + 1}) Question`}
-                                        </label> */}
                                         {/* Start : Question input Field */}
                                         <Field
                                             type='text'
