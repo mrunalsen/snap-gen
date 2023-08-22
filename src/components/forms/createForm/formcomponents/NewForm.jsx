@@ -1,13 +1,15 @@
 import axios from 'axios';
-import { Field, FieldArray, Formik } from 'formik';
-import React, { useRef } from 'react';
+import { Field, FieldArray, Form, Formik, ErrorMessage } from 'formik';
+import React, { useRef, useState } from 'react';
+import inputValidation from '../../../../schemas';
 
 const NewForm = ({ containerRef }) => {
-    /* Constant for form FieldArray input */
-    const initialValues = { form: [] };
+    /* Default array field name */
+    // const [arrayFieldName, setArrayFieldName] = useState('forms');
+    /* User input Form name */
+    const [formName, setFormName] = useState('');
     /* Constant for Submit button reference */
     const submitButtonRef = useRef();
-
     /**
      * @description this function brings Submit button into view on add question button click
      */
@@ -21,34 +23,60 @@ const NewForm = ({ containerRef }) => {
 
     return (
         <Formik
-            initialValues={initialValues}
-            onSubmit={async (values) => {
+            initialValues={{
+                [formName]: []
+            }}
+            validationSchema={inputValidation}
+            onSubmit={async (values, action) => {
                 try {
-                    const response = await axios.post('http://localhost:3000/form',
-                        { questions: values.form }
+                    const response = await axios.post('http://localhost:3000/forms',
+                        { [formName]: values[formName] }
                     );
                     console.log('response', response.data);
+                    action.resetForm();
                 } catch (err) {
                     console.error('Error', err);
                 }
             }}
         >
-            {({ values, handleSubmit }) => (
-                <form onSubmit={handleSubmit}>
+            {({ values, handleSubmit, handleChange, handleBlur, errors, touched }) => (
+                <Form onSubmit={handleSubmit}>
+                    <div className='flex'>
+                        <label htmlFor="formName" className="block font-medium mb-2">
+                            Form Title
+                        </label>
+                        <input
+                            type="text"
+                            id="formName"
+                            name="formName"
+                            value={formName}
+                            onBlur={handleBlur}
+                            onChange={(e) => setFormName(e.target.value)}
+                            className="input-primary w-full"
+                            autoFocus
+                            autoComplete='off'
+                        />
+
+                    </div>
                     {/* Start : Field Array */}
-                    <FieldArray name="form">
+                    <FieldArray name={formName}>
                         {({ push, remove }) => (
                             <div className='bg-white overflow-hidden rounded-md'>
-                                {values.form.map((question, index) => (
+                                {(values[formName] || []).map((question, index) => (
                                     <div key={index} className='flex flex-col border hover:bg-gray-100 p-4'>
                                         {/* Start : Question input Field */}
                                         <Field
                                             type='text'
-                                            name={`form[${index}].question`}
-                                            id={`form[${index}].question`}
+                                            name={`${formName}[${index}].question`}
+                                            id={`${formName}[${index}].question`}
                                             className={`input-primary`}
                                             placeholder={`${index + 1}) Question`}
                                             autoComplete="off"
+                                        />
+                                        <ErrorMessage
+                                            name={`${formName}[${index}].question`}
+                                            component="div"
+                                            className="text-red-500"
                                         />
                                         {/* End : Question input Field */}
                                         {/* Start : Action Fields */}
@@ -57,11 +85,11 @@ const NewForm = ({ containerRef }) => {
                                             <div className="flex items-center">
                                                 <Field
                                                     type="checkbox"
-                                                    name={`form[${index}].required`}
-                                                    id={`form[${index}].required`}
+                                                    name={`${formName}[${index}].required`}
+                                                    id={`${formName}[${index}].required`}
                                                     className={`hidden checkbox`}
                                                 />
-                                                <label htmlFor={`form[${index}].required`} className='slider-container'>
+                                                <label htmlFor={`${formName}[${index}].required`} className='slider-container'>
                                                     <div className="slider"></div>
                                                 </label>
                                                 <p className='m-0'>Required</p>
@@ -98,7 +126,7 @@ const NewForm = ({ containerRef }) => {
                         <button type="submit" className='btn-primary'>Submit</button>
                     </div>
                     {/* End : Submit Action */}
-                </form>
+                </Form>
             )}
         </Formik>
     );

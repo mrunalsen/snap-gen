@@ -15,7 +15,7 @@ const Header = () => {
                 <h2 className='text-xl font-medium text-white'>SnapGen</h2>
                 {/* End : Form Name */}
                 {/* Start : Profile actions */}
-                <label htmlFor="loginActionToggle" className='text-white select-none cursor-pointer p-2 hover:bg-blue-600 rounded'><i className="bi bi-caret-down-fill me-2"></i> {username}</label>
+                <label htmlFor="loginActionToggle" className='text-white select-none cursor-pointer p-2 hover:bg-blue-600 rounded transition-all duration-300'><i className="bi bi-caret-down-fill me-2"></i> {username}</label>
                 {/* End : Profile actions */}
             </div>
             {/* Start : Login action container checkbox */}
