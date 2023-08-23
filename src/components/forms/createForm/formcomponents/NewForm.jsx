@@ -1,15 +1,29 @@
 import axios from 'axios';
 import { Field, FieldArray, Form, Formik, ErrorMessage } from 'formik';
 import React, { useRef, useState } from 'react';
-import inputValidation from '../../../../schemas';
+// import inputValidation from '../../../../schemas';
+import * as Yup from 'yup';
 
-const NewForm = ({ containerRef }) => {
-    /* Default array field name */
-    // const [arrayFieldName, setArrayFieldName] = useState('forms');
+
+const NewForm = () => {
     /* User input Form name */
     const [formName, setFormName] = useState('');
     /* Constant for Submit button reference */
     const submitButtonRef = useRef();
+
+    /**
+ * @description YUP validations for form fields
+ */
+    const inputValidation = Yup.object({
+        formName: Yup.string().required('Please Enter Form Title'),
+        [formName]: Yup.array().of(
+            Yup.object().shape({
+                question: Yup.string().required('Question is required'),
+                required: Yup.boolean()
+            })
+        )
+    });
+
     /**
      * @description this function brings Submit button into view on add question button click
      */
@@ -20,6 +34,7 @@ const NewForm = ({ containerRef }) => {
             }
         });
     };
+
 
     return (
         <Formik
@@ -33,30 +48,38 @@ const NewForm = ({ containerRef }) => {
                         { [formName]: values[formName] }
                     );
                     console.log('response', response.data);
+                    setFormName('');
                     action.resetForm();
                 } catch (err) {
                     console.error('Error', err);
                 }
             }}
         >
-            {({ values, handleSubmit, handleChange, handleBlur, errors, touched }) => (
+            {({ values, handleSubmit, handleBlur, handleChange, isValid, errors, touched }) => (
                 <Form onSubmit={handleSubmit}>
                     <div className='flex'>
                         <label htmlFor="formName" className="block font-medium mb-2">
                             Form Title
                         </label>
-                        <input
+                        <Field
                             type="text"
                             id="formName"
                             name="formName"
                             value={formName}
                             onBlur={handleBlur}
-                            onChange={(e) => setFormName(e.target.value)}
+                            onChange={(e) => {
+                                setFormName(e.target.value);
+                                handleChange(e);
+                            }}
                             className="input-primary w-full"
                             autoFocus
                             autoComplete='off'
                         />
-
+                        <ErrorMessage
+                            name="formName"
+                            component="div"
+                            className="text-red-500"
+                        />
                     </div>
                     {/* Start : Field Array */}
                     <FieldArray name={formName}>
@@ -108,7 +131,8 @@ const NewForm = ({ containerRef }) => {
                                 <div className='text-center py-6'>
                                     <button
                                         type="button"
-                                        className='btn-primary'
+                                        className='btn-primary disabled:bg-blue-300'
+                                        disabled={!isValid || !touched.formName}
                                         onClick={() => {
                                             push({ question: '', required: false });
                                             scrollToSubmitButton();
