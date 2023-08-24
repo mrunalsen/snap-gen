@@ -6,6 +6,7 @@ const LoginAction = forwardRef(function LoginAction(props, ref) {
         // <div ref={ref}>
         <div className='bg-blue-500 flex flex-col rounded-md shadow-xl'>
             <Link to={`/create`} role='button' className='btn-primary w-auto flex justify-center focus:ring-0 whitespace-nowrap'>New Form</Link>
+            <Link to={`/manage`} role='button' className='btn-primary w-auto flex justify-center focus:ring-0 whitespace-nowrap'>Manager User</Link>
             <Link to={`/`} role='button' className='btn-primary w-auto flex justify-center focus:ring-0'>Logout</Link>
         </div>
         // </div>

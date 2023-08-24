@@ -27,6 +27,7 @@ const EmployeeInput = (props) => {
                             id="id"
                             className='col-span-2 border-x-2 border-t-2 border-zinc-300 outline-0 p-1 focus:bg-gray-100'
                             disabled={input}
+                            autoComplete='off'
                         />
                         {/* End : Input */}
                     </div>
@@ -44,6 +45,7 @@ const EmployeeInput = (props) => {
                             id="name"
                             className='col-span-2 border-x-2 border-t-2 border-zinc-300 outline-0 p-1 focus:bg-gray-100'
                             disabled={input}
+                            autoComplete='on'
                         />
                         {/* End : Input */}
                     </div>
@@ -61,6 +63,7 @@ const EmployeeInput = (props) => {
                             id="project"
                             className='col-span-2 border-x-2 border-t-2 border-zinc-300 outline-0 p-1 focus:bg-gray-100'
                             disabled={input}
+                            autoComplete='on'
                         />
                         {/* End : Input */}
                     </div>
@@ -78,6 +81,7 @@ const EmployeeInput = (props) => {
                             id="reviewer"
                             className='col-span-2 border-x-2 border-y-2 border-zinc-300 outline-0 p-1 focus:bg-gray-100'
                             disabled={input}
+                            autoComplete='on'
                         />
                         {/* End : Input */}
                     </div>

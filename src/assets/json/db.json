@@ -1,8 +1,21 @@
 {
   "users": [
     {
+      "id": 1,
       "name": "Mrunal",
       "email": "mrunal.patel@1rivet.com",
+      "password": "pass@123",
+      "role": "admin",
+      "submittedForm": [
+        "101",
+        "102"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Abhishek",
+      "email": "abhishek.patel@1rivet.com",
+      "password": "pass@123",
       "role": "employee",
       "submittedForm": [
         "101",
@@ -10,8 +23,10 @@
       ]
     },
     {
-      "name": "Francis",
-      "email": "poucmap@rezu.mh",
+      "id": 3,
+      "name": "Aman",
+      "email": "aman.patel@1rivet.com",
+      "password": "pass@123",
       "role": "employee",
       "submittedForm": [
         "101",
@@ -19,8 +34,10 @@
       ]
     },
     {
-      "name": "Lucinda",
-      "email": "wozwegu@numi.tt",
+      "id": 4,
+      "name": "Mehul",
+      "email": "mehul.patel@1rivet.com",
+      "password": "pass@123",
       "role": "employee",
       "submittedForm": [
         "101",
@@ -28,64 +45,10 @@
       ]
     },
     {
-      "name": "Harvey",
-      "email": "sosdaen@laah.wf",
-      "role": "employee",
-      "submittedForm": [
-        "101",
-        "102"
-      ]
-    },
-    {
-      "name": "Phillip",
-      "email": "simhujah@powdaoji.om",
-      "role": "employee",
-      "submittedForm": [
-        "101",
-        "102"
-      ]
-    }
-  ],
-  "emp": [
-    {
-      "name": "Mrunal",
-      "email": "mrunal.patel@1rivet.com",
-      "role": "employee",
-      "submittedForm": [
-        "101",
-        "102"
-      ]
-    },
-    {
-      "name": "Francis",
-      "email": "poucmap@rezu.mh",
-      "role": "employee",
-      "submittedForm": [
-        "101",
-        "102"
-      ]
-    },
-    {
-      "name": "Lucinda",
-      "email": "wozwegu@numi.tt",
-      "role": "employee",
-      "submittedForm": [
-        "101",
-        "102"
-      ]
-    },
-    {
-      "name": "Harvey",
-      "email": "sosdaen@laah.wf",
-      "role": "employee",
-      "submittedForm": [
-        "101",
-        "102"
-      ]
-    },
-    {
-      "name": "Phillip",
-      "email": "simhujah@powdaoji.om",
+      "id": 5,
+      "name": "Viral",
+      "email": "viral.patel@1rivet.com",
+      "password": "pass@123",
       "role": "employee",
       "submittedForm": [
         "101",
