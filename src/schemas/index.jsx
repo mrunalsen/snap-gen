@@ -1,6 +1,7 @@
-// import * as Yup from 'yup';
+import * as Yup from 'yup';
 
-// const inputValidation = Yup.object({
-//     input: Yup.string().required('Please fill out the required fields'),
-// });
-// export default inputValidation;
+export const signupSchema = Yup.object({
+    email: Yup.string().email().required('Please fill out the required fields'),
+    password: Yup.string().min(6).max(16).required('Enter Password'),
+    confirm_password: Yup.string().required('Please fill out the required fields').oneOf([Yup.ref('password'), null], 'Passwords must match'),
+});

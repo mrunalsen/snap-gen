@@ -1,9 +1,10 @@
+import axios from 'axios';
 import { useFormik } from 'formik';
 import { Link, useNavigate } from 'react-router-dom';
 
 /* Initial Values for Login */
 const initialvalue = {
-    username: '',
+    email: '',
     password: '',
 };
 
@@ -16,13 +17,28 @@ const Login = () => {
     const { handleSubmit, values, handleChange } = useFormik({
         initialValues: initialvalue,
         // validationSchema: loginSchema,
-        onSubmit: (value, action) => {
-            if (value.username === 'employee' && value.password === 'password') {
-                navigateTo('/home');
-            } else if (value.username === 'admin' && value.password === 'password') {
-                navigateTo(`/admin`);
-            } else {
-                alert('invalid credentials');
+        onSubmit: async (value, action) => {
+            try {
+                const response = await axios.get('http://localhost:3000/users');
+                const users = await response.json();
+                const user = users.find(u => u.email === value.email && u.password === value.password);
+
+                if (user) {
+                    switch (user.role) {
+                        case 'employee':
+                            navigateTo('/home');
+                            break;
+                        case 'admin':
+                            navigateTo('/admin');
+                            break;
+                        default:
+                            alert('Invalid Role');
+                    }
+                } else {
+                    alert('Invalid Credentials');
+                }
+            } catch (error) {
+                console.error('Error:', error);
             }
             action.resetForm();
         }
@@ -36,12 +52,16 @@ const Login = () => {
                 <div
                     className="p-4 py-6 text-white bg-blue-500 md:w-80 md:flex-shrink-0 md:flex md:flex-col md:items-center md:justify-evenly"
                 >
+                    {/* Start : Brand */}
                     <div className="my-3 text-4xl font-bold tracking-wider text-center">
-                        <p>Progress Snapshot</p>
+                        <p><span className="text-rose-500 tracking-[-4px]">1</span>R Forms</p>
                     </div>
+                    {/* End : Brand */}
+                    {/* Start : Login Info */}
                     <p className="mt-6 font-normal text-center text-gray-300 md:mt-0">
                         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Officia, earum!
                     </p>
+                    {/* End : Login Info */}
                     <p className="flex flex-col items-center justify-center mt-10 text-center">
                         <span>Don't have an account?</span>
                         <Link to={`/signup`}>Get Started!</Link>
@@ -54,14 +74,15 @@ const Login = () => {
                     <h3 className="my-4 text-2xl font-semibold text-gray-700">Account Login</h3>
                     <form className="flex flex-col space-y-5" onSubmit={handleSubmit}>
                         <div className="flex flex-col space-y-1">
-                            <label htmlFor="username" className="text-sm font-semibold text-gray-500">Username</label>
+                            <label htmlFor="email" className="text-sm font-semibold text-gray-500">email</label>
                             <input
-                                name='username'
+                                name='email'
                                 type="text"
-                                id="username"
-                                value={values.username}
+                                id="email"
+                                value={values.email}
                                 onChange={handleChange}
                                 className="input-primary"
+                                autoComplete='on'
                             />
                         </div>
                         <div className="flex flex-col space-y-1">
@@ -75,6 +96,7 @@ const Login = () => {
                                 value={values.password}
                                 onChange={handleChange}
                                 className="input-primary"
+                                autoComplete='off'
                             />
                         </div>
                         <div className="flex items-center justify-between">

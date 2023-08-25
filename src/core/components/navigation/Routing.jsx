@@ -8,6 +8,7 @@ import Admin from '../../../components/Admin';
 import FormContainer from '../../../components/forms/createForm/FormContainer';
 import Login from '../login/Login';
 import Signup from '../login/Signup';
+import ManageEmployee from '../../../components/ManageEmployee';
 
 const Routing = () => {
     return (
@@ -19,6 +20,7 @@ const Routing = () => {
                 <Route path='/admin' element={<Admin />} />
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/create' element={<FormContainer />} />
+                <Route path='/manage' element={<ManageEmployee />} />
             </Routes>
             {/* End : Routing paths */}
         </>

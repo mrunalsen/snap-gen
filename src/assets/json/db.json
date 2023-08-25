@@ -1,0 +1,108 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Mrunal",
+      "email": "mrunal.patel@1rivet.com",
+      "password": "pass@123",
+      "role": "admin",
+      "submittedForm": [
+        "101",
+        "102"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Abhishek",
+      "email": "abhishek.patel@1rivet.com",
+      "password": "pass@123",
+      "role": "employee",
+      "submittedForm": [
+        "101",
+        "102"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Aman",
+      "email": "aman.patel@1rivet.com",
+      "password": "pass@123",
+      "role": "employee",
+      "submittedForm": [
+        "101",
+        "102"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Mehul",
+      "email": "mehul.patel@1rivet.com",
+      "password": "pass@123",
+      "role": "employee",
+      "submittedForm": [
+        "101",
+        "102"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Viral",
+      "email": "viral.patel@1rivet.com",
+      "password": "pass@123",
+      "role": "employee",
+      "submittedForm": [
+        "101",
+        "102"
+      ]
+    }
+  ],
+  "forms": [
+    {
+      "Form 1": [
+        {
+          "question": "what?",
+          "required": false
+        }
+      ],
+      "id": 1
+    },
+    {
+      "Form 2": [
+        {
+          "question": "name?",
+          "required": false
+        }
+      ],
+      "id": 2
+    },
+    {
+      "Form 3": [
+        {
+          "question": "name?",
+          "required": false
+        }
+      ],
+      "id": 3
+    }
+  ],
+  "answers": [
+    {
+      "formID": "101",
+      "userId": "",
+      "answers1": "",
+      "answers2": ""
+    },
+    {
+      "formID": "102",
+      "userId": "",
+      "answers1": "",
+      "answers2": ""
+    },
+    {
+      "formID": "103",
+      "userId": "",
+      "answers1": "",
+      "answers2": ""
+    }
+  ]
+}

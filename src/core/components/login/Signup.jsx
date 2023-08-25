@@ -59,6 +59,7 @@ const Signup = () => {
                                 value={values.name}
                                 onChange={handleChange}
                                 className="form-input"
+                                autoComplete='on'
                             />
                         </div>
                         {/* End : Display Name */}
@@ -73,6 +74,7 @@ const Signup = () => {
                                 onChange={handleChange}
                                 onBlur={handleBlur}
                                 className="form-input"
+                                autoComplete='on'
                             />
                             {errors.email && touched.email ? <small className='form-error text-rose-500'>{errors.email}</small> : null}
                         </div>
