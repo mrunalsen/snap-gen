@@ -57,7 +57,7 @@ const NewForm = () => {
         >
             {({ values, handleSubmit, handleBlur, handleChange, isValid, errors, touched }) => (
                 <Form onSubmit={handleSubmit}>
-                    <div className='flex'>
+                    <div className='flex flex-col'>
                         <label htmlFor="formName" className="block font-medium mb-2">
                             Form Title
                         </label>

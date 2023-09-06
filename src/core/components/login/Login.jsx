@@ -20,7 +20,7 @@ const Login = () => {
         onSubmit: async (value, action) => {
             try {
                 const response = await axios.get('http://localhost:3000/users');
-                const users = await response.json();
+                const users = await response.data;
                 const user = users.find(u => u.email === value.email && u.password === value.password);
 
                 if (user) {

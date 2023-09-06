@@ -8,7 +8,7 @@ import Admin from '../../../components/Admin';
 import FormContainer from '../../../components/forms/createForm/FormContainer';
 import Login from '../login/Login';
 import Signup from '../login/Signup';
-import ManageEmployee from '../../../components/ManageEmployee';
+import ManageEmployee from '../../../components/manageEmployee/ManageEmployee';
 
 const Routing = () => {
     return (
