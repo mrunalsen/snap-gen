@@ -1,7 +1,7 @@
 import React from 'react';
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from 'yup';
-import axios from 'axios';
+
 const CreateEmployee = ({ addEmployee }) => {
     const initialValues = {
         name: '',
@@ -100,7 +100,7 @@ const CreateEmployee = ({ addEmployee }) => {
                     {/* Add fields for 'password', 'role', and 'submittedForms' similarly */}
 
                     <div className="text-end">
-                        <button type="submit" disabled={isSubmitting} className='btn-primary disabled:bg-blue-300 disabled:cursor-not-allowed'>
+                        <button type="submit" disabled={isSubmitting} className='btn-primary disabled:bg-blue-300 disabled:cursor-not-allowed my-2'>
                             {isSubmitting ? 'Adding...' : 'Add'}
                         </button>
                     </div>

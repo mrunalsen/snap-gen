@@ -70,7 +70,7 @@
     },
     {
       "name": "Henal",
-      "email": "bkennon3@storify.com",
+      "email": "henal@storify.com",
       "password": "password",
       "role": "manager",
       "submittedForms": [],
@@ -99,14 +99,6 @@
       "role": "admin",
       "submittedForms": [],
       "id": 8
-    },
-    {
-      "name": "Memon",
-      "email": "bkmemon@gmail.com",
-      "password": "password",
-      "role": "employee",
-      "submittedForms": [],
-      "id": 9
     },
     {
       "name": "Aman",
@@ -146,13 +138,34 @@
       "id": 3
     },
     {
-      "Goople": [
+      "doodle": [
         {
           "question": "feawfwfe",
           "required": true
         }
       ],
       "id": 4
+    },
+    {
+      "Google": [
+        {
+          "question": "ededdede",
+          "required": true
+        },
+        {
+          "question": "dedeCewCcCE",
+          "required": false
+        },
+        {
+          "question": "EcweeCECC",
+          "required": false
+        },
+        {
+          "question": "KHIUI8YOYGIYGIY",
+          "required": false
+        }
+      ],
+      "id": 5
     }
   ],
   "answers": [

@@ -9,7 +9,7 @@
 
     #loginActionToggle:checked {
         ~#loginAction {
-            @apply transition-all duration-300 ease-out max-h-[150px]
+            @apply transition-all duration-300 ease-out max-h-[250px]
         }
 
         ~.loginBackdrop {

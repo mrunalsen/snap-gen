@@ -1,15 +1,11 @@
 import React from 'react';
-import Header from '../core/components/navigation/Header';
-import ManagerForm from './forms/managerform/ManagerForm';
 import brand from '../assets/images/fulllogo.png';
 import { formatDate, getDate } from '../shared/getDate';
+import ManagerForm from './forms/managerform/ManagerForm';
 
 const Admin = () => {
     return (
         <>
-            {/* Start : Header */}
-            <Header />
-            {/* End : Header */}
             <div className='bg-body overflow-auto h-full'>
                 <div className="container overflow-hidden my-5 mx-auto">
                     {/* Start : Form Header */}

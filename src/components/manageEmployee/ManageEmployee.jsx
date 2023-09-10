@@ -1,10 +1,11 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import Header from '../../core/components/navigation/Header';
 import CreateEmployee from './CreateEmployee';
+import EditEmployee from './EditEmployee';
 
 const ManageEmployee = () => {
     const [employees, setEmployees] = useState([]);
+    const [editEmployee, setEditEmployee] = useState(null);
     /* Defining a role-to-color object */
     const roleColors = {
         admin: 'bg-red-500',
@@ -13,18 +14,22 @@ const ManageEmployee = () => {
     };
 
     const addEmployee = (newEmployee) => {
-        // You can add validation here if needed.
-        // Assuming the newEmployee parameter contains the data for the new employee.
-
-        // Send a POST request to add the new employee to the server
         axios.post('http://localhost:3000/users', newEmployee)
             .then((response) => {
-                // Update the employees list with the newly added employee
                 setEmployees((prevEmployees) => [...prevEmployees, response.data]);
             })
             .catch((error) => {
                 console.error(error);
             });
+    };
+
+    const editEmployeeHandler = (employee) => {
+        setEditEmployee(employee);
+    };
+
+    /* To Clear the editEmployee state to exit the editing mode */
+    const cancelEdit = () => {
+        setEditEmployee(null);
     };
 
     const deleteUser = (userId) => {
@@ -33,6 +38,22 @@ const ManageEmployee = () => {
         ).catch((err) => {
             console.error(err);
         });
+    };
+
+    const updateEmployee = (updatedEmployee) => {
+        axios.put(`http://localhost:3000/users/${updatedEmployee.id}`, updatedEmployee)
+            .then((response) => {
+                setEmployees((prevEmployees) =>
+                    prevEmployees.map((employee) =>
+                        employee.id === updatedEmployee.id ? response.data : employee
+                    )
+                );
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+        // Clearing the editEmployee state to exit the editing mode
+        setEditEmployee(null);
     };
 
     useEffect(() => {
@@ -45,7 +66,6 @@ const ManageEmployee = () => {
 
     return (
         <>
-            <Header />
             <div className="bg-body h-full overflow-auto">
                 <div className="container mx-auto p-4 sm:p-0">
                     <div className='flex justify-between items-center'>
@@ -58,7 +78,13 @@ const ManageEmployee = () => {
                             <CreateEmployee addEmployee={addEmployee} />
                         </div>
                     </div>
-
+                    {editEmployee && (
+                        <EditEmployee
+                            employeeData={editEmployee}
+                            updateEmployee={updateEmployee}
+                            onCancel={cancelEdit}
+                        />
+                    )}
 
                     <table className="table-auto w-full">
                         <thead>
@@ -71,9 +97,9 @@ const ManageEmployee = () => {
                         </thead>
                         <tbody>
                             {employees.map((user) => (
-                                <tr key={user.id}>
-                                    <td className="px-4 py-2">{user.name}</td>
-                                    <td className="px-4 py-2">
+                                <tr key={user.id} className='text-center'>
+                                    <td className="px-4 py-2 border rounded">{user.name}</td>
+                                    <td className="px-4 py-2 border rounded">
                                         <span
                                             className={
                                                 `${roleColors[user.role] || ''} rounded-md text-sm text-white p-1`
@@ -82,10 +108,16 @@ const ManageEmployee = () => {
                                             {user.role}
                                         </span>
                                     </td>
-                                    <td className="px-4 py-2">{user.email}</td>
-                                    <td className="px-4 py-2">
-                                        <button className='text-rose-500' onClick={() => deleteUser(user.id)}>
+                                    <td className="px-4 py-2 border rounded">{user.email}</td>
+                                    <td className="px-4 py-2 border rounded">
+                                        <button className='bg-rose-500 text-white rounded-full px-2 py-1' onClick={() => deleteUser(user.id)}>
                                             <i className="bi bi-trash"></i>
+                                        </button>
+                                        <button
+                                            className="bg-blue-500 text-white rounded px-2 py-1 ms-2"
+                                            onClick={() => editEmployeeHandler(user)}
+                                        >
+                                            Edit
                                         </button>
                                     </td>
                                 </tr>
