@@ -1,8 +1,18 @@
-import React from 'react';
-
+import React, { useEffect, useRef } from 'react';
+import '@mdxeditor/editor/style.css';
+import { MDXEditor } from '@mdxeditor/editor/MDXEditor';
+import { CodeToggle, CreateLink, InsertThematicBreak, ListsToggle, Separator, headingsPlugin, linkDialogPlugin, linkPlugin, listsPlugin, quotePlugin, thematicBreakPlugin } from '@mdxeditor/editor';
+import { toolbarPlugin } from '@mdxeditor/editor/plugins/toolbar';
+import { BoldItalicUnderlineToggles } from '@mdxeditor/editor/plugins/toolbar/components/BoldItalicUnderlineToggles';
+import { UndoRedo } from '@mdxeditor/editor/plugins/toolbar/components/UndoRedo';
 const EmployeeInput = (props) => {
     /* Constants extracted from props passed on from Employee Manager form */
     const { handleChange, values, input, questions } = props;
+    const containerref = useRef();
+
+    useEffect(() => {
+        // console.log(containerref.current?.getMarkdown());
+    }, []);
 
     return (
         <>
@@ -109,14 +119,43 @@ const EmployeeInput = (props) => {
                             </label>
                             {/* End : label */}
                             {/* Start : Form Input */}
-                            <textarea
+                            {/* <textarea
                                 value={values.data[`q${index + 1}`]}
                                 onChange={handleChange}
                                 id={`q${index + 1}`}
                                 name={`data.q${index + 1}`}
                                 className="border-2 border-zinc-300 outline-0 w-full p-1 focus:bg-gray-100"
                                 disabled={input}
-                            />
+                            /> */}
+                            <div className='border-2 border-zinc-300'>
+                                <MDXEditor
+                                    ref={containerref}
+                                    markdown={values.data[`q${index + 1}`]}
+                                    value={values.data[`q${index + 1}`]}
+                                    onChange={handleChange}
+                                    id={`q${index + 1}`}
+                                    name={`data.q${index + 1}`}
+                                    disabled={input}
+                                    plugins={[
+                                        headingsPlugin(), listsPlugin(), quotePlugin(), thematicBreakPlugin(), linkPlugin(), linkDialogPlugin(), listsPlugin(),
+                                        toolbarPlugin({
+                                            toolbarContents: () => (
+                                                <div className='flex rounded'>
+                                                    <UndoRedo />
+                                                    <Separator />
+                                                    <BoldItalicUnderlineToggles />
+                                                    <Separator />
+                                                    <InsertThematicBreak />
+                                                    <CodeToggle />
+                                                    <CreateLink />
+                                                    <ListsToggle />
+                                                </div>
+                                            )
+                                        })]}
+                                    contentEditableClassName=" outline-0 w-full p-1 focus:bg-gray-100"
+                                // plugins={[headingsPlugin()]}
+                                />
+                            </div>
                             {/* End : Form Input */}
                         </div>
                     ))}
