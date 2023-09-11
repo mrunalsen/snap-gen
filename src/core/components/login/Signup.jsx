@@ -58,7 +58,7 @@ const Signup = () => {
                                 id="displayname"
                                 value={values.name}
                                 onChange={handleChange}
-                                className="form-input"
+                                className="input-primary"
                                 autoComplete='on'
                             />
                         </div>
@@ -73,7 +73,7 @@ const Signup = () => {
                                 value={values.email}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-input"
+                                className="input-primary"
                                 autoComplete='on'
                             />
                             {errors.email && touched.email ? <small className='form-error text-rose-500'>{errors.email}</small> : null}
@@ -91,7 +91,7 @@ const Signup = () => {
                                 value={values.password}
                                 onChange={handleChange}
                                 onBlur={handleBlur}
-                                className="form-input"
+                                className="input-primary"
                             />
                             {errors.password && touched.password ? <small className='form-error text-rose-500'>{errors.password}</small> : null}
                         </div>

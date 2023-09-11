@@ -1,5 +1,4 @@
 import React, { useRef } from 'react';
-import Header from '../../../core/components/navigation/Header';
 import brand from '../../../assets/images/fulllogo.png';
 import { formatDate, getDate } from '../../../shared/getDate';
 import NewForm from './formcomponents/NewForm';
@@ -8,9 +7,6 @@ const FormContainer = () => {
     const containerRef = useRef();
     return (
         <>
-            {/* Start : Header */}
-            <Header />
-            {/* End : Header */}
             {/* Start : Form Header */}
             <div className='bg-body overflow-auto h-full' ref={containerRef}>
                 <div className="container overflow-hidden my-5 mx-auto">

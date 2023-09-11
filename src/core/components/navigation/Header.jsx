@@ -12,7 +12,7 @@ const Header = () => {
                 <p className='text-white text-3xl font-bold p-1 ms-1 select-none'><span className='text-rose-500'>1</span>R</p>
                 {/* End : Brand name */}
                 {/* Start : Form Name */}
-                <h2 className='text-xl font-medium text-white'>SnapGen</h2>
+                <h2 className='text-xl font-medium text-white select-none'>SnapGen</h2>
                 {/* End : Form Name */}
                 {/* Start : Profile actions */}
                 <label htmlFor="loginActionToggle" className='text-white select-none cursor-pointer p-2 hover:bg-blue-600 rounded transition-all duration-300'><i className="bi bi-caret-down-fill me-2"></i> {username}</label>

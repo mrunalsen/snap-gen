@@ -1,5 +1,5 @@
 {
-  "users": [
+  "usersbackup": [
     {
       "id": 1,
       "name": "Mrunal",
@@ -56,6 +56,59 @@
       ]
     }
   ],
+  "users": [
+    {
+      "id": 4,
+      "name": "Mehul",
+      "email": "mehul.patel@1rivet.com",
+      "password": "pass@123",
+      "role": "employee",
+      "submittedForm": [
+        "101",
+        "102"
+      ]
+    },
+    {
+      "name": "Henal",
+      "email": "henal@storify.com",
+      "password": "password",
+      "role": "manager",
+      "submittedForms": [],
+      "id": 5
+    },
+    {
+      "name": "Mrunal",
+      "email": "mrunalpatel_4950@yahoo.com",
+      "password": "password",
+      "role": "employee",
+      "submittedForms": [],
+      "id": 6
+    },
+    {
+      "name": "Mehul",
+      "email": "mehul.patel@1rivet.com",
+      "password": "password",
+      "role": "manager",
+      "submittedForms": [],
+      "id": 7
+    },
+    {
+      "name": "Memon",
+      "email": "bkennon3@storify.com",
+      "password": "password",
+      "role": "admin",
+      "submittedForms": [],
+      "id": 8
+    },
+    {
+      "name": "Aman",
+      "email": "aman.patel@1rivet.com",
+      "password": "pass@123",
+      "role": "manager",
+      "submittedForms": [],
+      "id": 10
+    }
+  ],
   "forms": [
     {
       "Form 1": [
@@ -83,6 +136,36 @@
         }
       ],
       "id": 3
+    },
+    {
+      "doodle": [
+        {
+          "question": "feawfwfe",
+          "required": true
+        }
+      ],
+      "id": 4
+    },
+    {
+      "Google": [
+        {
+          "question": "ededdede",
+          "required": true
+        },
+        {
+          "question": "dedeCewCcCE",
+          "required": false
+        },
+        {
+          "question": "EcweeCECC",
+          "required": false
+        },
+        {
+          "question": "KHIUI8YOYGIYGIY",
+          "required": false
+        }
+      ],
+      "id": 5
     }
   ],
   "answers": [

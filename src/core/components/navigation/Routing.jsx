@@ -8,7 +8,9 @@ import Admin from '../../../components/Admin';
 import FormContainer from '../../../components/forms/createForm/FormContainer';
 import Login from '../login/Login';
 import Signup from '../login/Signup';
-import ManageEmployee from '../../../components/ManageEmployee';
+import ManageEmployee from '../../../components/manageEmployee/ManageEmployee';
+import FormList from '../../../components/formlist/FormList';
+import FormQuestions from '../../../components/formlist/FormQuestions';
 
 const Routing = () => {
     return (
@@ -21,6 +23,8 @@ const Routing = () => {
                 <Route path='/signup' element={<Signup />} />
                 <Route path='/create' element={<FormContainer />} />
                 <Route path='/manage' element={<ManageEmployee />} />
+                <Route path='/formlist' element={<FormList />} />
+                <Route path="/forms/:id" element={<FormQuestions />} />
             </Routes>
             {/* End : Routing paths */}
         </>

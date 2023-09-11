@@ -25,7 +25,7 @@ const ManagerInput = (props) => {
                             id="mq1"
                             name='review.mq1'
                             placeholder='Manager to describe performance differentiators displayed by the employee'
-                            className='disabled:cursor-not-allowed border-2 border-zinc-300 outline-0 w-full p-1 focus:bg-gray-100 focus:bg-gray-100' disabled={input} />
+                            className='disabled:cursor-not-allowed border-2 border-zinc-300 outline-0 w-full p-1 focus:bg-gray-100' disabled={input} />
                         {/* End : Input */}
                     </div>
                     {/* End : Performance Differentiators */}
@@ -42,7 +42,7 @@ const ManagerInput = (props) => {
                             id="mq2"
                             name="review.mq2"
                             placeholder='Manager to describe development areas for the employee'
-                            className='disabled:cursor-not-allowed border-2 border-zinc-300 outline-0 w-full p-1 focus:bg-gray-100 focus:bg-gray-100' disabled={input} />
+                            className='disabled:cursor-not-allowed border-2 border-zinc-300 outline-0 w-full p-1 focus:bg-gray-100' disabled={input} />
                         {/* End : Input */}
                     </div>
                     {/* End : Development Actions */}
@@ -59,7 +59,7 @@ const ManagerInput = (props) => {
                             id="mq3"
                             name="review.mq3"
                             placeholder='Manager to highlight future focus areas for the employee'
-                            className='disabled:cursor-not-allowed border-2 border-zinc-300 outline-0 w-full p-1 focus:bg-gray-100 focus:bg-gray-100' disabled={input} />
+                            className='disabled:cursor-not-allowed border-2 border-zinc-300 outline-0 w-full p-1 focus:bg-gray-100' disabled={input} />
                         {/* End : Inout */}
                     </div>
                     {/* End : Fututre Focus Area */}

@@ -1,15 +1,11 @@
 import React from 'react';
-import Header from '../core/components/navigation/Header';
 import brand from '../assets/images/fulllogo.png';
-import EmployeeForm from './forms/employeeform/EmployeeForm';
 import { formatDate, getDate } from '../shared/getDate';
+import EmployeeForm from './forms/employeeform/EmployeeForm';
 
 const Home = () => {
     return (
         <>
-            {/* Start : Header */}
-            <Header />
-            {/* End : Header */}
             <div className='bg-body overflow-auto h-full'>
                 <div className="container overflow-hidden my-5 mx-auto">
                     {/* Start : Form Header */}
@@ -23,7 +19,7 @@ const Home = () => {
                                 <p className='font-medium text-lg'>Performance Review</p>
                                 <p className='font-medium'>{formatDate(getDate)}</p>
                             </div>
-                            <p>Hi! Would you mind taking few minutes to complete this form? It would be great if you can submit your response by Aug 9, 2023. Thank you!</p>
+                            <p>Hi! Would you mind taking few minutes to complete this form? It would be great if you can submit your response in next few days. Thank you!</p>
                         </div>
                     </div>
                     {/* End : Form Header */}
