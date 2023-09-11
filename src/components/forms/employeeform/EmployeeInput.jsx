@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { createRef, useEffect, useRef, useState } from 'react';
 import '@mdxeditor/editor/style.css';
 import { MDXEditor } from '@mdxeditor/editor/MDXEditor';
 import { CodeToggle, CreateLink, InsertThematicBreak, ListsToggle, Separator, headingsPlugin, linkDialogPlugin, linkPlugin, listsPlugin, quotePlugin, thematicBreakPlugin } from '@mdxeditor/editor';
@@ -8,12 +8,27 @@ import { UndoRedo } from '@mdxeditor/editor/plugins/toolbar/components/UndoRedo'
 const EmployeeInput = (props) => {
     /* Constants extracted from props passed on from Employee Manager form */
     const { handleChange, values, input, questions } = props;
-    const containerref = useRef();
+    // const containerref = useRef();
+    const containerRefs = useRef([]);
+    const [mdxEditorValues, setMdxEditorValues] = useState({});
+
+    const handleEditorChange = (index, markdown) => {
+        setMdxEditorValues((prevValues) => ({
+            ...prevValues,
+            [`q${index + 1}`]: markdown,
+        }));
+    };
+
+    const getAllValues = () => {
+        console.log(mdxEditorValues);
+    };
 
     useEffect(() => {
-        // console.log(containerref.current?.getMarkdown());
-    }, []);
-
+        // Initialize containerRefs array
+        containerRefs.current = Array(questions.length)
+            .fill()
+            .map((_, index) => containerRefs.current[index] || createRef());
+    }, [questions]);
     return (
         <>
             {/* Start : Employee details */}
@@ -129,32 +144,34 @@ const EmployeeInput = (props) => {
                             /> */}
                             <div className='border-2 border-zinc-300'>
                                 <MDXEditor
-                                    ref={containerref}
+                                    // ref={containerref}
+                                    ref={containerRefs.current[index]}
                                     markdown={values.data[`q${index + 1}`]}
-                                    value={values.data[`q${index + 1}`]}
-                                    onChange={handleChange}
+                                    // onChange={handleChange}
+                                    onChange={(markdown) => handleEditorChange(index, markdown)}
                                     id={`q${index + 1}`}
                                     name={`data.q${index + 1}`}
                                     disabled={input}
-                                    plugins={[
-                                        headingsPlugin(), listsPlugin(), quotePlugin(), thematicBreakPlugin(), linkPlugin(), linkDialogPlugin(), listsPlugin(),
-                                        toolbarPlugin({
-                                            toolbarContents: () => (
-                                                <div className='flex rounded'>
-                                                    <UndoRedo />
-                                                    <Separator />
-                                                    <BoldItalicUnderlineToggles />
-                                                    <Separator />
-                                                    <InsertThematicBreak />
-                                                    <CodeToggle />
-                                                    <CreateLink />
-                                                    <ListsToggle />
-                                                </div>
-                                            )
-                                        })]}
+                                    // plugins={[
+                                    //     headingsPlugin(), listsPlugin(), quotePlugin(), thematicBreakPlugin(), linkPlugin(), linkDialogPlugin(), listsPlugin(),
+                                    //     toolbarPlugin({
+                                    //         toolbarContents: () => (
+                                    //             <div className='flex rounded'>
+                                    //                 <UndoRedo />
+                                    //                 <Separator />
+                                    //                 <BoldItalicUnderlineToggles />
+                                    //                 <Separator />
+                                    //                 <InsertThematicBreak />
+                                    //                 <CodeToggle />
+                                    //                 <CreateLink />
+                                    //                 <ListsToggle />
+                                    //             </div>
+                                    //         )
+                                    //     })]}
                                     contentEditableClassName=" outline-0 w-full p-1 focus:bg-gray-100"
                                 // plugins={[headingsPlugin()]}
                                 />
+                                <button type='button' onClick={getAllValues}>Get markdown</button>
                             </div>
                             {/* End : Form Input */}
                         </div>

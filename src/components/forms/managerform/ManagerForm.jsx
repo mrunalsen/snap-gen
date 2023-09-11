@@ -38,7 +38,7 @@ const ManagerForm = () => {
     /**
      * @description method used for submitting form values with Formik and Yup libraries
      */
-    const { handleSubmit, handleChange, handleReset, values } = useFormik({
+    const { handleSubmit, handleChange, values } = useFormik({
         initialValues: initialvalue,
 
         onSubmit: (value, action) => {

@@ -42,26 +42,22 @@ const EmployeeForm = () => {
     /**
      * @description method used for submitting form values with Formik and Yup libraries
      */
-    const { handleSubmit, handleChange, values, setFieldValue } = useFormik({
+    const { handleSubmit, handleChange, values } = useFormik({
         initialValues: initialvalue,
         onSubmit: async (value, action) => {
             // console.log('values:', value);
-            console.log('MDXEditor Content:', mdxContent);
-            setFieldValue('data.q1', mdxContent);
+            // Get all the MDXEditor values
+            const allMdxEditorValues = {};
+            questions.forEach((question, index) => {
+                allMdxEditorValues[`q${index + 1}`] = containerref.current[index]?.getMarkdown() || '';
+            });
+            console.log('All MDXEditor Values:', allMdxEditorValues);
 
-            // Now, you can access the updated form values with the MDXEditor content
-            console.log('Form values:', mdxContent);
             action.resetForm();
         }
     }
     );
-    useEffect(() => {
-        console.log(containerref.current?.getMarkdown());
-    }, []);;
-    const handleMDXEditorChange = (fieldName, newContent) => {
-        // Update the form values with the new MDXEditor content
-        console.log('MDXEditor Content:', mdxEditorContent);
-    };
+
     return (
         <form onSubmit={handleSubmit}>
             {/* Start : Employee details */}
@@ -70,7 +66,6 @@ const EmployeeForm = () => {
                 handleChange={handleChange}
                 input={null}
                 questions={questions}
-                onMDXEditorChange={handleMDXEditorChange}
                 containerref={containerref}
             />
             {/* End : Employee details */}
