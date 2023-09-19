@@ -1,6 +1,7 @@
 import React, { createRef, useEffect, useRef, useState } from 'react';
 import '@mdxeditor/editor/style.css';
 import { MDXEditor } from '@mdxeditor/editor/MDXEditor';
+import MemoizedMDXEditor from './MemoizedMDXEditor';
 import { CodeToggle, CreateLink, InsertThematicBreak, ListsToggle, Separator, headingsPlugin, linkDialogPlugin, linkPlugin, listsPlugin, quotePlugin, thematicBreakPlugin } from '@mdxeditor/editor';
 import { toolbarPlugin } from '@mdxeditor/editor/plugins/toolbar';
 import { BoldItalicUnderlineToggles } from '@mdxeditor/editor/plugins/toolbar/components/BoldItalicUnderlineToggles';
@@ -28,7 +29,7 @@ const EmployeeInput = (props) => {
         containerRefs.current = Array(questions.length)
             .fill()
             .map((_, index) => containerRefs.current[index] || createRef());
-    }, [questions]);
+    }, [questions, setMdxEditorValues]);
     return (
         <>
             {/* Start : Employee details */}
@@ -143,35 +144,29 @@ const EmployeeInput = (props) => {
                                 disabled={input}
                             /> */}
                             <div className='border-2 border-zinc-300'>
-                                <MDXEditor
-                                    // ref={containerref}
-                                    ref={containerRefs.current[index]}
+                                <MemoizedMDXEditor
                                     markdown={values.data[`q${index + 1}`]}
-                                    // onChange={handleChange}
                                     onChange={(markdown) => handleEditorChange(index, markdown)}
                                     id={`q${index + 1}`}
                                     name={`data.q${index + 1}`}
                                     disabled={input}
-                                    // plugins={[
-                                    //     headingsPlugin(), listsPlugin(), quotePlugin(), thematicBreakPlugin(), linkPlugin(), linkDialogPlugin(), listsPlugin(),
-                                    //     toolbarPlugin({
-                                    //         toolbarContents: () => (
-                                    //             <div className='flex rounded'>
-                                    //                 <UndoRedo />
-                                    //                 <Separator />
-                                    //                 <BoldItalicUnderlineToggles />
-                                    //                 <Separator />
-                                    //                 <InsertThematicBreak />
-                                    //                 <CodeToggle />
-                                    //                 <CreateLink />
-                                    //                 <ListsToggle />
-                                    //             </div>
-                                    //         )
-                                    //     })]}
-                                    contentEditableClassName=" outline-0 w-full p-1 focus:bg-gray-100"
-                                // plugins={[headingsPlugin()]}
+                                    plugins={[
+                                        headingsPlugin(), listsPlugin(), quotePlugin(), thematicBreakPlugin(), linkPlugin(), linkDialogPlugin(), listsPlugin(),
+                                        toolbarPlugin({
+                                            toolbarContents: () => (
+                                                <div className='flex rounded'>
+                                                    <UndoRedo />
+                                                    <Separator />
+                                                    <BoldItalicUnderlineToggles />
+                                                    <Separator />
+                                                    <InsertThematicBreak />
+                                                    <CodeToggle />
+                                                    <CreateLink />
+                                                    <ListsToggle />
+                                                </div>
+                                            )
+                                        })]}
                                 />
-                                <button type='button' onClick={getAllValues}>Get markdown</button>
                             </div>
                             {/* End : Form Input */}
                         </div>
@@ -180,6 +175,7 @@ const EmployeeInput = (props) => {
                 {/* End : Form Questions */}
             </div>
             {/* End : Questions for Employees */}
+                    <button type='button' onClick={getAllValues}>Get markdown</button>
         </>
     );
 };
