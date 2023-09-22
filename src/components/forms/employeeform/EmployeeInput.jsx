@@ -1,17 +1,23 @@
-import React, { createRef, useEffect, useRef, useState } from 'react';
-import '@mdxeditor/editor/style.css';
-import { MDXEditor } from '@mdxeditor/editor/MDXEditor';
-import MemoizedMDXEditor from './MemoizedMDXEditor';
-import { CodeToggle, CreateLink, InsertThematicBreak, ListsToggle, Separator, headingsPlugin, linkDialogPlugin, linkPlugin, listsPlugin, quotePlugin, thematicBreakPlugin } from '@mdxeditor/editor';
+import { CreateLink, Separator, headingsPlugin, linkDialogPlugin, linkPlugin, listsPlugin, quotePlugin, thematicBreakPlugin } from '@mdxeditor/editor';
+import React, { useState } from 'react';
+import { useLocation } from 'react-router-dom';
 import { toolbarPlugin } from '@mdxeditor/editor/plugins/toolbar';
 import { BoldItalicUnderlineToggles } from '@mdxeditor/editor/plugins/toolbar/components/BoldItalicUnderlineToggles';
 import { UndoRedo } from '@mdxeditor/editor/plugins/toolbar/components/UndoRedo';
+import '@mdxeditor/editor/style.css';
+import MemoizedMDXEditor from './MemoizedMDXEditor';
+
 const EmployeeInput = (props) => {
-    /* Constants extracted from props passed on from Employee Manager form */
+    // Constants extracted from props passed on from Employee Manager form
     const { handleChange, values, input, questions } = props;
-    // const containerref = useRef();
-    const containerRefs = useRef([]);
+    // const containerRefs = useRef([]);
     const [mdxEditorValues, setMdxEditorValues] = useState({});
+    const location = useLocation();
+
+    /* Function for rendering Submit button only for Employee input */
+    const isHome = () => {
+        return location.pathname === '/home';
+    };
 
     const handleEditorChange = (index, markdown) => {
         setMdxEditorValues((prevValues) => ({
@@ -19,17 +25,11 @@ const EmployeeInput = (props) => {
             [`q${index + 1}`]: markdown,
         }));
     };
-
+    /* Function to get values of user input */
     const getAllValues = () => {
         console.log(mdxEditorValues);
     };
 
-    useEffect(() => {
-        // Initialize containerRefs array
-        containerRefs.current = Array(questions.length)
-            .fill()
-            .map((_, index) => containerRefs.current[index] || createRef());
-    }, [questions, setMdxEditorValues]);
     return (
         <>
             {/* Start : Employee details */}
@@ -158,11 +158,11 @@ const EmployeeInput = (props) => {
                                                     <UndoRedo />
                                                     <Separator />
                                                     <BoldItalicUnderlineToggles />
-                                                    <Separator />
-                                                    <InsertThematicBreak />
-                                                    <CodeToggle />
+                                                    {/* <Separator /> */}
+                                                    {/* <InsertThematicBreak /> */}
+                                                    {/* <CodeToggle /> */}
                                                     <CreateLink />
-                                                    <ListsToggle />
+                                                    {/* <ListsToggle /> */}
                                                 </div>
                                             )
                                         })]}
@@ -175,7 +175,13 @@ const EmployeeInput = (props) => {
                 {/* End : Form Questions */}
             </div>
             {/* End : Questions for Employees */}
-                    <button type='button' onClick={getAllValues}>Get markdown</button>
+            {
+                isHome() && (
+                    <div className="text-end">
+                        <button type='button' className='btn-primary mb-4' onClick={getAllValues}>Submit</button>
+                    </div>
+                )
+            }
         </>
     );
 };

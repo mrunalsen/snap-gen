@@ -4,6 +4,7 @@ import ManagerInput from '../managerform/ManagerInput';
 import EmployeeInput from './EmployeeInput';
 import { useFormik } from 'formik';
 import questions from '../common/Questions';
+import { useLocation } from 'react-router-dom';
 
 const EmployeeForm = () => {
     const [mdxEditorContent, setMdxEditorContent] = useState('');
@@ -36,9 +37,15 @@ const EmployeeForm = () => {
             collaboration: undefined,
         }
     };
-
+    const location = useLocation();
     const containerref = useRef();
+    const employeeInputRef = useRef();
     const mdxContent = containerref.current?.getMarkdown();
+
+    const isManager = () => {
+        location.pathname !== '/home';
+    };
+
     /**
      * @description method used for submitting form values with Formik and Yup libraries
      */
@@ -47,12 +54,15 @@ const EmployeeForm = () => {
         onSubmit: async (value, action) => {
             // console.log('values:', value);
             // Get all the MDXEditor values
-            const allMdxEditorValues = {};
-            questions.forEach((question, index) => {
-                allMdxEditorValues[`q${index + 1}`] = containerref.current[index]?.getMarkdown() || '';
-            });
-            console.log('All MDXEditor Values:', allMdxEditorValues);
-
+            // Get all the MDXEditor values
+            // const allMdxEditorValues = {};
+            // questions.forEach((question, index) => {
+            //     allMdxEditorValues[`q${index + 1}`] = containerref.current[index]?.getMarkdown() || '';
+            // });
+            // console.log('All MDXEditor Values:', allMdxEditorValues);
+            if (employeeInputRef.current) {
+                employeeInputRef.current.getMarkdownButtonRef.current.click();
+            }
             action.resetForm();
         }
     }
@@ -66,7 +76,8 @@ const EmployeeForm = () => {
                 handleChange={handleChange}
                 input={null}
                 questions={questions}
-                containerref={containerref}
+                onSubmitCallback={handleSubmit}
+            // ref={employeeInputRef}
             />
             {/* End : Employee details */}
             {/* Start : Manager Review */}
@@ -84,9 +95,11 @@ const EmployeeForm = () => {
             />
             {/* End : Ratings */}
             {/* Start : Submit Action */}
-            <div className="text-end">
-                <button className="btn-primary w-auto" type='submit'>submit</button>
-            </div>
+            {isManager() && (
+                <div className="text-end">
+                    <button className="btn-primary w-auto" type='submit'>submit</button>
+                </div>
+            )}
             {/* End : Submit Action */}
         </form>
     );

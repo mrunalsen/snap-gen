@@ -77,8 +77,8 @@ const NewForm = () => {
                         />
                         <ErrorMessage
                             name="formName"
-                            component="div"
-                            className="text-red-500"
+                            component="span"
+                            className="text-red-500 my-1"
                         />
                     </div>
                     {/* Start : Field Array */}

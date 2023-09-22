@@ -3,6 +3,7 @@ import { Formik, Field, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 
 const EditEmployee = ({ employeeData, updateEmployee, onCancel }) => {
+
     const [initialValues, setInitialValues] = useState(employeeData);
 
     const validationSchema = Yup.object().shape({
@@ -24,7 +25,7 @@ const EditEmployee = ({ employeeData, updateEmployee, onCancel }) => {
             onSubmit={handleSubmit}
         >
             {({ isSubmitting }) => (
-                <Form className="p-3">
+                <Form className="p-3 bg-white rounded">
                     {/* Render the form fields similar to the CreateEmployee component */}
                     {/* You can reuse the same form fields and components here */}
                     {/* Example Field for editing 'name': */}
@@ -68,13 +69,12 @@ const EditEmployee = ({ employeeData, updateEmployee, onCancel }) => {
                         <ErrorMessage name="password" component="div" className="text-rose-500" />
                     </div>
 
-
-                    <div className="flex justify-between">
-                        <button type="button" onClick={onCancel} className="btn-outline-danger">
-                            Cancel
+                    <div className="flex justify-between mt-2">
+                        <button type="button" onClick={onCancel} className="btn-danger text-sm">
+                            cancel
                         </button>
-                        <button type="submit" disabled={isSubmitting} className="btn-primary disabled:bg-blue-300 disabled:cursor-not-allowed">
-                            {isSubmitting ? 'Updating...' : 'Update'}
+                        <button type="submit" disabled={isSubmitting} className="btn-primary disabled:bg-blue-300 disabled:cursor-not-allowed text-sm">
+                            {isSubmitting ? 'updating...' : 'update'}
                         </button>
                     </div>
                 </Form>

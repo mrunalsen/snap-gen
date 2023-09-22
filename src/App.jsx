@@ -13,7 +13,11 @@ function App() {
       {/* Start : Header */}
       {showHeader && <Header />}
       {/* End : Header */}
-      <Routing />
+      {/* Start : Main Routing */}
+      <div className="bg-body overflow-auto h-full">
+        <Routing />
+      </div>
+      {/* End : Main Routing */}
     </div>
   );
 }

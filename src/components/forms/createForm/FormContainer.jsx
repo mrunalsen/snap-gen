@@ -8,7 +8,7 @@ const FormContainer = () => {
     return (
         <>
             {/* Start : Form Header */}
-            <div className='bg-body overflow-auto h-full' ref={containerRef}>
+            <div ref={containerRef}>
                 <div className="container overflow-hidden my-5 mx-auto">
                     <div className='bg-head flex justify-end rounded-md my-4'>
                         <div className='bg-white max-w-[300px] rounded-md px-6 py-10 m-10'>
