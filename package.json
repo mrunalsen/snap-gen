@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@mdxeditor/editor": "^1.0.0",
+    "@mdxeditor/editor": "^1.0.1",
     "axios": "^1.4.0",
     "bootstrap-icons": "^1.10.5",
     "d3": "^7.8.5",

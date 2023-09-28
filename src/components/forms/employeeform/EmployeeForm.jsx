@@ -1,15 +1,30 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Ratings from '../common/Ratings';
-import ManagerInput from '../managerform/ManagerInput';
-import EmployeeInput from './EmployeeInput';
-import { useFormik } from 'formik';
+import React, { useRef, useState } from 'react';
 import questions from '../common/Questions';
-import { useLocation } from 'react-router-dom';
+import EmployeeInput from './EmployeeInput';
+import axios from 'axios';
+import { useFormik } from 'formik';
+import {
+    CodeToggle,
+    CreateLink,
+    InsertThematicBreak,
+    ListsToggle,
+    MDXEditor,
+    Separator,
+    headingsPlugin,
+    linkDialogPlugin,
+    linkPlugin,
+    listsPlugin,
+    quotePlugin,
+    thematicBreakPlugin,
+} from '@mdxeditor/editor';
+import { toolbarPlugin } from '@mdxeditor/editor/plugins/toolbar';
+import { BoldItalicUnderlineToggles } from '@mdxeditor/editor/plugins/toolbar/components/BoldItalicUnderlineToggles';
+import { UndoRedo } from '@mdxeditor/editor/plugins/toolbar/components/UndoRedo';
+import '@mdxeditor/editor/style.css';
 
 const EmployeeForm = () => {
-    const [mdxEditorContent, setMdxEditorContent] = useState('');
-    /* Constant for Initial Values for form field values */
-    const initialvalue = {
+    const [input, setinput] = useState(null);
+    const initialValue = {
         id: '',
         name: '',
         project: '',
@@ -26,44 +41,28 @@ const EmployeeForm = () => {
             q9: '',
             q10: '',
         },
-        review: {
-            mq1: '',
-            mq2: '',
-            mq3: '',
-            leadership: undefined,
-            business: undefined,
-            technology: undefined,
-            inclusive: undefined,
-            collaboration: undefined,
-        }
-    };
-    const location = useLocation();
-    const containerref = useRef();
-    const employeeInputRef = useRef();
-    const mdxContent = containerref.current?.getMarkdown();
-
-    const isManager = () => {
-        location.pathname !== '/home';
     };
 
+    const containerRefs = useRef(Array(questions.length).fill(null).map(() => useRef()));
     /**
-     * @description method used for submitting form values with Formik and Yup libraries
+     * @description method used for submitting form values with Formik
      */
-    const { handleSubmit, handleChange, values } = useFormik({
-        initialValues: initialvalue,
+    const { handleSubmit, values, handleChange } = useFormik({
+        initialValues: initialValue,
         onSubmit: async (value, action) => {
-            // console.log('values:', value);
-            // Get all the MDXEditor values
-            // Get all the MDXEditor values
-            // const allMdxEditorValues = {};
-            // questions.forEach((question, index) => {
-            //     allMdxEditorValues[`q${index + 1}`] = containerref.current[index]?.getMarkdown() || '';
-            // });
-            // console.log('All MDXEditor Values:', allMdxEditorValues);
-            if (employeeInputRef.current) {
-                employeeInputRef.current.getMarkdownButtonRef.current.click();
+            containerRefs.current.forEach((ref, index) => {
+                const fieldName = `q${index + 1}`;
+                values.data[fieldName] = ref.current.getMarkdown();
+            });
+            console.log(values);
+
+            try {
+                await axios.post('http://localhost:3000/answers', values);
+                action.resetForm();
+
+            } catch (error) {
+                console.error(error);
             }
-            action.resetForm();
         }
     }
     );
@@ -72,34 +71,79 @@ const EmployeeForm = () => {
         <form onSubmit={handleSubmit}>
             {/* Start : Employee details */}
             <EmployeeInput
-                values={values}
-                handleChange={handleChange}
                 input={null}
                 questions={questions}
-                onSubmitCallback={handleSubmit}
-            // ref={employeeInputRef}
+                values={values}
+                handleChange={handleChange}
             />
             {/* End : Employee details */}
-            {/* Start : Manager Review */}
-            <ManagerInput
-                input={'disabled'}
-                handleChange={handleChange}
-                values={values}
-            />
-            {/* End : Manager Review */}
-            {/* Start : Ratings */}
-            <Ratings
-                input={'disabled'}
-                handleChange={handleChange}
-                values={values}
-            />
-            {/* End : Ratings */}
-            {/* Start : Submit Action */}
-            {isManager() && (
-                <div className="text-end">
-                    <button className="btn-primary w-auto" type='submit'>submit</button>
+            {/* Start : Questions for Employees */}
+            <div className={`${input === 'disabled' ? 'bg-gray-200' : 'bg-white'} overflow-hidden rounded-md mb-4`}>
+                {/* Start : Field Hero Title */}
+                <div className="bg-blue-500">
+                    <p className='text-white p-3 m-0'>SELF-ASSESSMENT [TO BE FILLED BY THE EMPLOYEE]</p>
                 </div>
-            )}
+                {/* End : Field Hero Title */}
+
+                {/* Start : Form Questions */}
+                <div className="p-4">
+                    {questions.map((question, index) => (
+                        <div className="group mb-4" key={index}>
+                            {/* Start : label */}
+                            <label
+                                // htmlFor={`q${index + 1}`}
+                                className={`${input === 'disabled' ? 'text-gray-500' : 'text-black'}`}
+                            >
+                                {question.label}
+                            </label>
+                            {/* End : label */}
+                            {/* Start : Form Input */}
+                            {/* <textarea
+                                value={values.data[`q${index + 1}`]}
+                                onChange={handleChange}
+                                id={`q${index + 1}`}
+                                name={`data.q${index + 1}`}
+                                className="border-2 border-zinc-300 outline-0 w-full p-1 focus:bg-gray-100"
+                                disabled={input}
+                            /> */}
+                            <div className='border border-zinc-300'>
+                                <MDXEditor
+                                    ref={containerRefs.current[index]}
+                                    markdown={values.data[`q${index + 1}`]}
+                                    // readOnly={true}
+                                    id={`q${index + 1}`}
+                                    name={`data.q${index + 1}`}
+                                    className='focus-within:bg-gray-100 transition-all duration-150'
+                                    disabled={input}
+                                    plugins={[
+                                        headingsPlugin(), listsPlugin(), quotePlugin(), thematicBreakPlugin(), linkPlugin(), linkDialogPlugin(), listsPlugin(),
+                                        toolbarPlugin({
+                                            toolbarContents: () => (
+                                                <div className={`flex rounded z-0`}>
+                                                    <UndoRedo />
+                                                    <Separator />
+                                                    <BoldItalicUnderlineToggles />
+                                                    <Separator />
+                                                    <InsertThematicBreak />
+                                                    <CodeToggle />
+                                                    <CreateLink />
+                                                    <ListsToggle />
+                                                </div>
+                                            )
+                                        })]}
+                                />
+                            </div>
+                            {/* End : Form Input */}
+                        </div>
+                    ))}
+                </div>
+                {/* End : Form Questions */}
+            </div>
+            {/* End : Questions for Employees */}
+            {/* Start : Submit Action */}
+            <div className="text-end">
+                <button type='submit' className='btn-primary mb-4'>Submit</button>
+            </div>
             {/* End : Submit Action */}
         </form>
     );
