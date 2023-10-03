@@ -13,3 +13,12 @@ body,
     height: 100%;
     overflow: hidden;
 }
+
+@layer base {
+    ul,
+    ol {
+        list-style: revert;
+        margin: revert;
+        padding: revert;
+    }
+}

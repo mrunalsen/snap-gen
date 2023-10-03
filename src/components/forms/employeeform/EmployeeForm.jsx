@@ -24,6 +24,14 @@ import '@mdxeditor/editor/style.css';
 
 const EmployeeForm = () => {
     const [input, setinput] = useState(null);
+    const [pluginsVisible, setPluginsVisible] = useState(Array(questions.length).fill(false));
+
+    const handlePlugin = (index) => {
+        const updatedPluginsVisible = [...pluginsVisible];
+        updatedPluginsVisible[index] = !updatedPluginsVisible[index];
+        setPluginsVisible(updatedPluginsVisible);
+    };
+
     const initialValue = {
         id: '',
         name: '',
@@ -90,12 +98,12 @@ const EmployeeForm = () => {
                     {questions.map((question, index) => (
                         <div className="group mb-4" key={index}>
                             {/* Start : label */}
-                            <label
+                            <span
                                 // htmlFor={`q${index + 1}`}
                                 className={`${input === 'disabled' ? 'text-gray-500' : 'text-black'}`}
                             >
                                 {question.label}
-                            </label>
+                            </span>
                             {/* End : label */}
                             {/* Start : Form Input */}
                             {/* <textarea
@@ -106,32 +114,55 @@ const EmployeeForm = () => {
                                 className="border-2 border-zinc-300 outline-0 w-full p-1 focus:bg-gray-100"
                                 disabled={input}
                             /> */}
-                            <div className='border border-zinc-300'>
+                            <div className='flex border border-zinc-300'>
+                                <div className='flex items-end'>
+                                    <button
+                                        type='button'
+                                        className='px-2 py-3'
+                                        onClick={() => handlePlugin(index)}
+                                    >
+                                        <i className="bi bi-pencil-fill text-zinc-500"></i>
+                                    </button>
+                                </div>
                                 <MDXEditor
                                     ref={containerRefs.current[index]}
+                                    key={pluginsVisible[index] ? 'toolbar' : 'default'}
                                     markdown={values.data[`q${index + 1}`]}
-                                    // readOnly={true}
                                     id={`q${index + 1}`}
                                     name={`data.q${index + 1}`}
-                                    className='focus-within:bg-gray-100 transition-all duration-150'
+                                    className='focus-within:bg-gray-100 transition-all duration-150 w-full'
                                     disabled={input}
                                     plugins={[
-                                        headingsPlugin(), listsPlugin(), quotePlugin(), thematicBreakPlugin(), linkPlugin(), linkDialogPlugin(), listsPlugin(),
+                                        headingsPlugin(),
+                                        listsPlugin(),
+                                        quotePlugin(),
+                                        thematicBreakPlugin(),
+                                        linkPlugin(),
+                                        linkDialogPlugin(),
+                                        listsPlugin(),
                                         toolbarPlugin({
                                             toolbarContents: () => (
                                                 <div className={`flex rounded z-0`}>
-                                                    <UndoRedo />
-                                                    <Separator />
-                                                    <BoldItalicUnderlineToggles />
-                                                    <Separator />
-                                                    <InsertThematicBreak />
-                                                    <CodeToggle />
-                                                    <CreateLink />
-                                                    <ListsToggle />
+
+                                                    {pluginsVisible[index] && (
+                                                        <div className='flex rounded z-0'>
+                                                            <UndoRedo />
+                                                            <Separator />
+                                                            <BoldItalicUnderlineToggles />
+                                                            <Separator />
+                                                            <InsertThematicBreak />
+                                                            <CreateLink />
+                                                            <ListsToggle />
+                                                        </div>
+                                                    )}
                                                 </div>
                                             )
-                                        })]}
+                                        }
+                                        )
+                                    ]
+                                    }
                                 />
+
                             </div>
                             {/* End : Form Input */}
                         </div>

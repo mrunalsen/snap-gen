@@ -3,6 +3,7 @@ import {
     Route,
     Routes
 } from "react-router-dom";
+import Loader from '../../../shared/Loader';
 const Home = lazy(() => import('../../../components/Home'));
 const Admin = lazy(() => import('../../../components/Admin'));
 const FormContainer = lazy(() => import('../../../components/forms/createForm/FormContainer'));
@@ -15,7 +16,7 @@ const FormQuestions = lazy(() => import('../../../components/formlist/FormQuesti
 const Routing = () => {
     return (
         <>
-            <Suspense fallback={<div>Loading....</div>}>
+            <Suspense fallback={<Loader />}>
                 {/* Start : Routing paths */}
                 <Routes>
                     <Route path='/' element={<Login />} />

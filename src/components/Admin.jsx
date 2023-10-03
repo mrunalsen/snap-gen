@@ -18,7 +18,7 @@ const Admin = () => {
                             <p className='font-medium text-lg'>Performance Review</p>
                             <p className='font-medium'>{formatDate(getDate)}</p>
                         </div>
-                        <p>Hi! Would you mind taking few minutes to complete this form? It would be great if you can submit your response by Aug 9, 2023. Thank you!</p>
+                        <p>Hi! Would you mind taking few minutes to complete this form? It would be great if you can submit your responseas soon as possible. Thank you!</p>
                     </div>
                 </div>
                 {/* End : Form Header */}

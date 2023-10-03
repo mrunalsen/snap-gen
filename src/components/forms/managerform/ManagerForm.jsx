@@ -1,12 +1,4 @@
-import { useFormik } from 'formik';
-import axios from 'axios';
-import React, { useRef, useState } from 'react';
-import Ratings from '../common/Ratings';
-import EmployeeInput from '../employeeform/EmployeeInput';
-import ManagerInput from './ManagerInput';
-import questions from '../common/Questions';
 import {
-    CodeToggle,
     CreateLink,
     InsertThematicBreak,
     ListsToggle,
@@ -17,15 +9,31 @@ import {
     linkPlugin,
     listsPlugin,
     quotePlugin,
-    thematicBreakPlugin,
+    thematicBreakPlugin
 } from '@mdxeditor/editor';
 import { toolbarPlugin } from '@mdxeditor/editor/plugins/toolbar';
 import { BoldItalicUnderlineToggles } from '@mdxeditor/editor/plugins/toolbar/components/BoldItalicUnderlineToggles';
 import { UndoRedo } from '@mdxeditor/editor/plugins/toolbar/components/UndoRedo';
 import '@mdxeditor/editor/style.css';
+import axios from 'axios';
+import { useFormik } from 'formik';
+import React, { useRef, useState } from 'react';
+import questions from '../common/Questions';
+import Ratings from '../common/Ratings';
+import reviews from '../common/Reviews';
+import EmployeeInput from '../employeeform/EmployeeInput';
 
 const ManagerForm = () => {
     const [input, setInput] = useState('disabled');
+    const [pluginsVisible, setPluginsVisible] = useState(Array(questions.length).fill(false));
+
+    const handlePlugin = (index) => {
+        const updatedPluginsVisible = [...pluginsVisible];
+        updatedPluginsVisible[index] = !updatedPluginsVisible[index];
+        setPluginsVisible(updatedPluginsVisible);
+    };
+
+
     /* Constant for initial values for form input values */
     const initialvalue = {
         id: 'xyzzyx',
@@ -39,7 +47,7 @@ const ManagerForm = () => {
             q4: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla aperiam blanditiis porro reiciendis voluptatum enim?',
             q5: 'Lorem ipsum dolor sit amet.',
             q6: '**Lorem ipsum dolor sit amet consectetur adipisicing elit. Eaque, commodi?**',
-            q7: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Harum.',
+            q7: ' 1. *Italic*\n2. **Bold**\n3. <u>Underline</u>\n4. ***<u>Bold, Italic & Underline</u>*** ',
             q8: 'Lorem ipsum dolor sit amet.',
             q9: 'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aperiam aliquam magni obcaecati illo aut natus consequatur sed. Tempora!',
             q10: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Libero soluta fuga ducimus facilis, commodi expedita laborum provident minima vero accusantium.',
@@ -52,35 +60,30 @@ const ManagerForm = () => {
             collaboration: undefined,
         },
         reviewquestions: {
-            mq1: '',
-            mq2: '',
-            mq3: '',
+            q1: '',
+            q2: '',
+            q3: '',
         }
     };
 
-    // const containerRefs = useRef(Array(questions.length).fill(null).map(() => useRef()));
-    const containerRefs = useRef();
-
+    const containerRefs = useRef(Array(reviews.length).fill(null).map(() => useRef()));
     /**
      * @description method used for submitting form values with Formik and Yup libraries
      */
-    const { handleSubmit, handleChange, values, setFieldValue } = useFormik({
+    const { handleSubmit, handleChange, values } = useFormik({
         initialValues: initialvalue,
 
         onSubmit: async (value, action) => {
-            // Get the MDXEditor value
-            const mdxEditorValue = containerRefs.current?.getMarkdown();
+            containerRefs.current.forEach((ref, index) => {
+                const fieldName = `q${index + 1}`;
+                values.reviewquestions[fieldName] = ref.current.getMarkdown();
+            });
 
-            // Make a POST request to send the updated data
+            console.log(values);
             try {
-                await axios.post('http://localhost:3000/answers',);
-
-                // Reset the form
+                const response = await axios.post('http://localhost:3000/answers', values);
                 action.resetForm();
-
-                // Optionally, you can show a success message or perform other actions after a successful POST request.
             } catch (error) {
-                // Handle any errors that occur during the POST request.
                 console.error('Error:', error);
             }
         },
@@ -112,9 +115,9 @@ const ManagerForm = () => {
                         {questions.map((question, index) => (
                             <div className="group mb-4" key={index}>
                                 {/* Start : label */}
-                                <label className={`${input === 'disabled' ? 'text-gray-500' : 'text-black'}`}>
+                                <span className={`${input === 'disabled' ? 'text-gray-500' : 'text-black'}`}>
                                     {question.label}
-                                </label>
+                                </span>
                                 {/* End : label */}
                                 {/* Start : Form Input */}
                                 <div className='border border-zinc-300'>
@@ -122,6 +125,9 @@ const ManagerForm = () => {
                                         markdown={values.data[`q${index + 1}`]}
                                         readOnly
                                         className='focus-within:bg-gray-100 transition-all duration-150'
+                                        plugins={[
+                                            headingsPlugin(), listsPlugin(), quotePlugin(), thematicBreakPlugin(), linkPlugin(), linkDialogPlugin(), listsPlugin(),
+                                        ]}
                                     />
                                 </div>
                                 {/* End : Form Input */}
@@ -132,76 +138,58 @@ const ManagerForm = () => {
                 </div>
                 <form onSubmit={handleSubmit}>
                     {/* Start : Manager Input */}
-                    <div className={`${input === 'disabled' ? 'bg-gray-200' : 'bg-white'} overflow-hidden rounded-md mb-4`}>
+                    <div className={`bg-white overflow-hidden rounded-md mb-4`}>
                         {/* Start : Field Hero Title */}
                         <div className="bg-blue-500">
                             <p className='text-white p-3 m-0'>MANAGER REVIEW [TO BE FILLED BY THE REVIEW MANAGER]</p>
                         </div>
                         {/* End : Field Hero Title */}
                         <div className="p-3">
-                            {/* Start : Performance Differentiators */}
-                            <div className="group mb-4">
-                                {/* Start : Label */}
-                                <label htmlFor='mq1'>PERFORMANCE DIFFERENTIATORS</label>
-                                {/* End : Label */}
-                                {/* Start : Input */}
-                                {/* <textarea
-                                    value={values.review.mq1}
-                                    onChange={handleChange}
-                                    type="text"
-                                    id="mq1"
-                                    name='review.mq1'
-                                    placeholder='Manager to describe performance differentiators displayed by the employee'
-                                    className='disabled:cursor-not-allowed border-2 border-zinc-300 outline-0 w-full p-1 focus:bg-gray-100' /> */}
-                                <MDXEditor
-                                    ref={containerRefs}
-                                    markdown={values.reviewquestions.mq1}
-                                />
-                                {/* End : Input */}
-                            </div>
-                            {/* End : Performance Differentiators */}
-                            {/* Start : Development Actions */}
-                            <div className="group mb-4">
-                                {/* Start : Label */}
-                                <label htmlFor='mq2'>DEVELOPMENT ACTIONS</label>
-                                {/* End : Label */}
-                                {/* Start : Input */}
-                                {/* <textarea
-                                    value={values.review.mq2}
-                                    onChange={handleChange}
-                                    type="text"
-                                    id="mq2"
-                                    name="review.mq2"
-                                    placeholder='Manager to describe development areas for the employee'
-                                    className='disabled:cursor-not-allowed border-2 border-zinc-300 outline-0 w-full p-1 focus:bg-gray-100' /> */}
-                                <MDXEditor
-                                    ref={containerRefs}
-                                    markdown={values.reviewquestions.mq2}
-                                />
-                                {/* End : Input */}
-                            </div>
-                            {/* End : Development Actions */}
-                            {/* Start : Fututre Focus Area */}
-                            <div className="group mb-4">
-                                {/* Start : Label */}
-                                <label htmlFor='mq2'>FUTURE FOCUS AREAS</label>
-                                {/* End : Label */}
-                                {/* Start : Inout */}
-                                {/* <textarea
-                                    value={values.review.mq3}
-                                    onChange={handleChange}
-                                    type="text"
-                                    id="mq3"
-                                    name="review.mq3"
-                                    placeholder='Manager to highlight future focus areas for the employee'
-                                    className='disabled:cursor-not-allowed border-2 border-zinc-300 outline-0 w-full p-1 focus:bg-gray-100' /> */}
-                                <MDXEditor
-                                    ref={containerRefs}
-                                    markdown={values.reviewquestions.mq3}
-                                />
-                                {/* End : Inout */}
-                            </div>
-                            {/* End : Fututre Focus Area */}
+                            {reviews.map((reviews, index) => (
+                                <div className="mb-4" key={index}>
+                                    <span>
+                                        {reviews.label}
+                                    </span>
+                                    <div className="flex border border-zinc-300">
+                                        <div className='flex items-end'>
+                                            <button
+                                                type='button'
+                                                className='px-2 py-3'
+                                                onClick={() => handlePlugin(index)}
+                                            >
+                                                <i className="bi bi-pencil-fill text-zinc-500"></i>
+                                            </button>
+                                        </div>
+                                        <MDXEditor
+                                            key={pluginsVisible[index] ? 'toolbar' : 'default'}
+                                            ref={containerRefs.current[index]}
+                                            markdown={values.reviewquestions[`q${index + 1}`]}
+                                            className='focus-within:bg-gray-100 transition-all duration-150 w-full'
+                                            id={`q${index + 1}`}
+                                            name={`reviewquestions.q${index + 1}`}
+                                            plugins={[
+                                                headingsPlugin(), listsPlugin(), quotePlugin(), thematicBreakPlugin(), linkPlugin(), linkDialogPlugin(), listsPlugin(),
+                                                toolbarPlugin({
+                                                    toolbarContents: () => (
+                                                        <div className={`flex rounded z-0`}>
+                                                            {pluginsVisible[index] && (
+                                                                <div className='flex rounded z-0'>
+                                                                    <UndoRedo />
+                                                                    <Separator />
+                                                                    <BoldItalicUnderlineToggles />
+                                                                    <Separator />
+                                                                    <InsertThematicBreak />
+                                                                    <CreateLink />
+                                                                    <ListsToggle />
+                                                                </div>
+                                                            )}
+                                                        </div>
+                                                    )
+                                                })]}
+                                        />
+                                    </div>
+                                </div>
+                            ))}
                         </div>
                     </div>
                     {/* End : Manager Input */}
